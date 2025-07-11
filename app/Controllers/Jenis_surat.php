@@ -36,10 +36,11 @@ class Jenis_surat extends BaseController
     public function save()
     {
         $model = new jenisSuratModel();
+        $detailModel = new detailJenisSuratModel();
         $validation = \Config\Services::validation();
         $validation->setRules([
             'nama_jenis_surat' => 'required|is_unique[jenis_surat.nama_jenis_surat]',
-            'persyaratan_jenis_surat' => 'required',
+            'kode_jenis_surat' => 'required',
             'ket_jenis_surat' => 'required',
             'template_jenis_surat' => 'required'
         ]);
@@ -48,15 +49,29 @@ class Jenis_surat extends BaseController
             session()->setFlashdata('error', 'Data Jenis Surat gagal ditambahkan');
             return redirect()->to('/Jenis_surat/Tambah');
         }
+        $id = Uuid::uuid4()->toString();
         $data = [
-            'id_jenis_surat' => Uuid::uuid4()->toString(),
+            'id_jenis_surat' => $id,
             'nama_jenis_surat' => $this->request->getPost('nama_jenis_surat'),
-            'persyaratan_jenis_surat' => $this->request->getPost('persyaratan_jenis_surat'),
+            'kode_jenis_surat' => $this->request->getPost('kode_jenis_surat'),
             'ket_jenis_surat' => $this->request->getPost('ket_jenis_surat'),
+            'status_jenis_surat' => '1',
             'template_jenis_surat' => $this->request->getPost('template_jenis_surat'),
             'created_at' => date('Y-m-d H:i:s')
         ];
         $model->insert($data);
+        $persyaratan = $this->request->getPost('persyaratan');
+        if ($persyaratan) {
+            foreach ($persyaratan as $id_persyaratan) {
+                $detailData = [
+                    'id_jenis_surat' => $id,
+                    'id_persyaratan' => $id_persyaratan,
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
+                $detailModel->save($detailData);
+            }
+        }
+        
         session()->setFlashdata('success', 'Data Jenis Surat berhasil ditambahkan');
         return redirect()->to('/Jenis_surat');
     }
@@ -79,7 +94,6 @@ class Jenis_surat extends BaseController
         $validation = \Config\Services::validation();
         $validation->setRules([
             'nama_jenis_surat' => 'required',
-            'persyaratan_jenis_surat' => 'required',
             'ket_jenis_surat' => 'required',
             'template_jenis_surat' => 'required'
         ]);

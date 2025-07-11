@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class jenisSuratModel extends Model
+class detailJenisSuratModel extends Model
 {
     protected $table = 'detail_jenis_surat';
     protected $primaryKey = 'id_detail_jenis_surat';
