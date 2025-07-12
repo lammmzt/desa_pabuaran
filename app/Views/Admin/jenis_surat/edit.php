@@ -11,8 +11,8 @@
                     </div>
                 </div>
             </div>
-            <form action="<?= base_url('jenis_surat/update/' . $jenis_surat['id_jenis_surat']); ?>" method="post"
-                enctype="multipart/form-data">
+            <form action="<?= base_url('jenis_surat/update'); ?>" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id_jenis_surat" value="<?= $jenis_surat['id_jenis_surat']; ?>">
                 <div class="card-body">
                     <?php if (session()->getFlashdata('success')) : ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -51,13 +51,39 @@
                             <?= $validation->getError('ket_jenis_surat'); ?>
                         </div>
                     </div>
-                    <div class="form-group mt-3">
-                        <label for="persyaratan_jenis_surat">Persyaratan Jenis Surat</label>
-                        <textarea id="editor1" name="persyaratan_jenis_surat" rows="10" cols="80"
-                            class="<?= ($validation->hasError('persyaratan_jenis_surat')) ? 'is-invalid' : ''; ?>"
-                            placeholder="Masukkan persyaratan jenis surat"><?= $jenis_surat['persyaratan_jenis_surat']; ?></textarea>
-                        <div class="invalid-feedback">
-                            <?= $validation->getError('persyaratan_jenis_surat'); ?>
+                    <div class="mt-3">
+                        <label for="persyaratan" class="form-label">Persyaratan</label>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button
+                                            class="btn btn-link btn-block text-left collapsed bg-transparent border-0 text-black"
+                                            type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            Pilih Persyaratan
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <?php 
+                                        $data_deatail = array_column($detail_jenis_surat, 'id_persyaratan');
+                                    foreach($persyaratan as $ref): ?>
+                                        <!-- checkbox -->
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="<?= $ref['id_persyaratan']; ?>" name="persyaratan[]"
+                                                value="<?= $ref['id_persyaratan']; ?>"
+                                                <?= (in_array($ref['id_persyaratan'], $data_deatail)) ? 'checked' : ''; ?>>
+                                            <label class="form-check-label"
+                                                for="<?= $ref['id_persyaratan']; ?>"><?= $ref['nama_persyaratan']; ?></label>
+                                        </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group mt-3">

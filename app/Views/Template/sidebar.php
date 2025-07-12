@@ -36,10 +36,10 @@
             <i class=" fas fa-fw fa-book"></i>
             <span>Jenis Surat</span></a>
     </li>
-    <li class="nav-item <?= ($menu_active == 'Warga') ? 'active' : ''; ?>">
-        <a class="nav-link" href="<?= base_url('Warga'); ?>">
-            <i class=" fas fa-fw fa-book"></i>
-            <span>Warga</span></a>
+    <li class="nav-item <?= ($menu_active == 'Keluarga') ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= base_url('Keluarga'); ?>">
+            <i class=" fas fa-fw fa-users"></i>
+            <span>Keluarga</span></a>
     </li>
 
     <!-- Divider -->
@@ -69,7 +69,7 @@
     <li class="nav-item <?= ($menu_active == 'Users') ? 'active' : ''; ?>">
         <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#uersMenu" aria-expanded="true"
             aria-controls="uersMenu">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fas fa-fw fa-user"></i>
             <span>Users</span>
         </a>
         <div id="uersMenu" class="collapse <?= ($menu_active == 'Users') ? 'show' : ''; ?>"

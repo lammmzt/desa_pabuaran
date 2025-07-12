@@ -39,7 +39,8 @@
                             <tr class="text-center">
                                 <th>No</th>
                                 <th>Nama Jenis Surat</th>
-                                <th>Ket Jenis Surat</th>
+                                <th>Keterangan</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -50,12 +51,22 @@
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $value['nama_jenis_surat']; ?></td>
                                 <td><?= $value['ket_jenis_surat']; ?></td>
+                                <td class="text-center" style="width: 10%;">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input status_jenis_surat"
+                                            id="customSwitch<?= $value['id_jenis_surat']; ?>"
+                                            data-id="<?= $value['id_jenis_surat']; ?>"
+                                            <?= ($value['status_jenis_surat'] == 1) ? 'checked' : ''; ?>>
+                                        <label class="custom-control-label"
+                                            for="customSwitch<?= $value['id_jenis_surat']; ?>"></label>
+                                    </div>
+                                </td>
                                 <td class="text-center">
                                     <a href="<?= base_url('jenis_surat/edit/' . $value['id_jenis_surat']); ?>"
                                         class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="<?= base_url('jenis_surat/delete/' . $value['id_jenis_surat']); ?>"
+                                    <!-- <a href="<?= base_url('jenis_surat/delete/' . $value['id_jenis_surat']); ?>"
                                         class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a> -->
                                 </td>
                             </tr>
                             <?php } ?>
@@ -66,4 +77,26 @@
         </div>
     </div>
 </div>
-<?= $this->endSection(); ?>
+<?= $this->endSection('content'); ?>
+<?= $this->section('script'); ?>
+<script>
+// when change status_jenis_surat
+$('.status_jenis_surat').change(function() {
+    var id = $(this).data('id');
+    $.ajax({
+        url: '<?= base_url('Jenis_surat/update_status'); ?>',
+        type: 'POST',
+        data: {
+            id: id,
+        },
+        success: function(response) {
+            if (response.status == '200') {
+                location.reload();
+            } else {
+                alert('Gagal mengubah status jenis surat');
+            }
+        }
+    });
+});
+</script>
+<?= $this->endSection('script'); ?>

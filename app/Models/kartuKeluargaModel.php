@@ -15,6 +15,7 @@ class kartuKeluargaModel extends Model
             return $this
             ->select('kartu_keluarga.*, users.nama_user')
             ->join('users', 'users.id_user = kartu_keluarga.id_user')
+            ->orderBy('kartu_keluarga.nama_kartu_keluarga', 'DESC')
             ->findAll();
         } else {
             return $this
