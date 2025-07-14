@@ -40,8 +40,8 @@
                                 <th>No</th>
                                 <th>Username</th>
                                 <th>Nama User</th>
-                                <th>Status User</th>
                                 <th>Role</th>
+                                <th>Status User</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -52,15 +52,24 @@
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $value['username']; ?></td>
                                 <td><?= $value['nama_user']; ?></td>
-                                <td class="text-center"><?= ($value['status_user'] == '1') ? 'Aktif' : 'Tidak Aktif'; ?>
-                                </td>
                                 <td class="text-center"><?= $value['role']; ?></td>
+
+                                <td class="text-center" style="width: 10%;">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input status_user"
+                                            id="customSwitch<?= $value['id_user']; ?>"
+                                            data-id="<?= $value['id_user']; ?>"
+                                            <?= ($value['status_user'] == 1) ? 'checked' : ''; ?>>
+                                        <label class="custom-control-label"
+                                            for="customSwitch<?= $value['id_user']; ?>"></label>
+                                    </div>
+                                </td>
                                 <td class="text-center">
                                     <a haref="#" class="btn btn-warning btn-sm" data-toggle="modal"
                                         data-target="#edit<?= $value['id_user']; ?>">Edit</a>
-                                    <a href="<?= base_url('Users/delete/' . $value['id_user']); ?>"
+                                    <!-- <a href="<?= base_url('Users/delete/' . $value['id_user']); ?>"
                                         class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a> -->
                                 </td>
                             </tr>
                             <?php } ?>
@@ -155,13 +164,9 @@
                             value="<?= $value['nama_user']; ?>">
                     </div>
                     <div class="form-group mt-2">
-                        <label for="status_user">Status User</label>
-                        <select name="status_user" id="status_user" class="form-control" required>
-                            <option value="1" <?= ($value['status_user'] == '1') ? 'selected' : ''; ?>>Aktif
-                            </option>
-                            <option value="0" <?= ($value['status_user'] == '0') ? 'selected' : ''; ?>>
-                                Tidak Aktif</option>
-                        </select>
+                        <label for="password">Passowrd</label>
+                        <input type="text" name="password" id="password" class="form-control">
+                        <span class="text-muted">Biarkan kosong jika tidak ingin merubah password</span>
                     </div>
                     <div class="form-group mt-2">
                         <label for="alamat_user">Alamat User</label>
@@ -189,4 +194,26 @@
     </div>
 </div>
 <?php } ?>
-<?= $this->endSection(); ?>
+<?= $this->endSection('content'); ?>
+<?= $this->section('script'); ?>
+<script>
+// when change status_persyaratan
+$('.status_user').change(function() {
+    var id = $(this).data('id');
+    $.ajax({
+        url: '<?= base_url('Users/update_status'); ?>',
+        type: 'POST',
+        data: {
+            id: id,
+        },
+        success: function(response) {
+            if (response.status == '200') {
+                location.reload();
+            } else {
+                alert('Gagal mengubah status user');
+            }
+        }
+    });
+});
+</script>
+<?= $this->endSection('script'); ?>

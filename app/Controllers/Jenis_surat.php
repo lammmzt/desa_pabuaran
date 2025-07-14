@@ -173,6 +173,45 @@ class Jenis_surat extends BaseController
             return $this->response->setJSON(['status' => '404', 'message' => 'Data Jenis Surat tidak ditemukan', 'error' => true]); // Mengembalikan response JSON error jika data tidak ditemukan
         }
     }
+
+
+    public function Duplikat($id) // Fungsi untuk menduplikat data jenis surat
+    {
+        $model = new jenisSuratModel(); // Inisialisasi model jenis surat
+        $detailModel = new detailJenisSuratModel(); // Inisialisasi model detail jenis surat 
+
+        $data_jenis_surat = $model->find($id); // Mencari data jenis surat berdasarkan ID
+        if ($data_jenis_surat) { // Jika data jenis surat ditemukan
+            $id_jenis_surat = Uuid::uuid4()->toString(); // Membuat ID unik untuk jenis surat
+            $nama_jenis_surat = $data_jenis_surat['nama_jenis_surat'] . ' (Copy)'; // Nama jenis surat yang sama
+            $checkNama = $model->where('nama_jenis_surat', $nama_jenis_surat)->find(); // Mencari jenis surat dengan nama yang sama
+            if ($checkNama) { // Jika jenis surat dengan nama yang sama sudah ada
+                $nama_jenis_surat = $data_jenis_surat['nama_jenis_surat'] . ' (Copy 2)'.date('Y-m-d H:i:s'); // Nama jenis surat yang sama
+            }
+            $data = [
+                'id_jenis_surat' => $id_jenis_surat, // ID jenis surat yang baru
+                'nama_jenis_surat' => $nama_jenis_surat, // Nama jenis surat yang sama
+                'ket_jenis_surat' => $data_jenis_surat['ket_jenis_surat'], // ket_jenis_surat jenis surat yang sama
+                'status_jenis_surat' => $data_jenis_surat['status_jenis_surat'], // Status jenis surat yang sama
+                'template_jenis_surat' => $data_jenis_surat['template_jenis_surat'], // Template jenis surat yang sama
+                'created_at' => date('Y-m-d H:i:s'), // Waktu pembuatan
+            ];
+            $model->insert($data);
+            
+            $detail_jenis_surat = $detailModel->where('id_jenis_surat', $id)->find(); // Mencari detail jenis surat berdasarkan ID jenis surat lama
+            foreach ($detail_jenis_surat as $detail) { // Melakukan perulangan untuk setiap detail jenis surat
+                $detailData = [ // Data detail jenis surat yang akan disimpan
+                    'id_jenis_surat' => $id_jenis_surat, // ID jenis surat yang akan diupdate
+                    'id_persyaratan' => $detail['id_persyaratan'], // ID persyaratan yang sama
+                    'created_at' => date('Y-m-d H:i:s') // Waktu pembuatan detail jenis surat
+                ];
+                $model->save($data);
+            }
+
+            session()->setFlashdata('success', 'Data Jenis Surat berhasil di duplikat'); // Menyimpan pesan sukses ke session
+            return redirect()->to('/Jenis_surat'); // Redirect ke halaman jenis surat
+        }
+    }
     
 }
 ?>

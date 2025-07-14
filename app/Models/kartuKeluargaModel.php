@@ -7,7 +7,7 @@ class kartuKeluargaModel extends Model
 {
     protected $table = 'kartu_keluarga';
     protected $primaryKey = 'id_kartu_keluarga';
-    protected $allowedFields = ['id_kartu_keluarga', 'id_user', 'nama_kartu_keluarga', 'alamat_kartu_keluarga', 'rt_kartu_keluarga', 'rw_kartu_keluarga', 'status_kartu_keluarga', 'foto_kartu_keluarga', 'created_at', 'updated_at'];
+    protected $allowedFields = ['id_kartu_keluarga', 'id_user', 'nama_kartu_keluarga', 'alamat_kartu_keluarga', 'rt_kartu_keluarga', 'rw_kartu_keluarga', 'status_kartu_keluarga', 'foto_kartu_keluarga', 'no_tpl_kartu_keluarga', 'created_at', 'updated_at'];
 
     public function getkartuKeluarga($id = false)
     {

@@ -64,6 +64,8 @@
                                 <td class="text-center">
                                     <a href="<?= base_url('jenis_surat/edit/' . $value['id_jenis_surat']); ?>"
                                         class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="<?= base_url('jenis_surat/Duplikat/' . $value['id_jenis_surat']); ?>"
+                                        class="btn btn-secondary btn-sm">Duplikat</a>
                                     <!-- <a href="<?= base_url('jenis_surat/delete/' . $value['id_jenis_surat']); ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a> -->

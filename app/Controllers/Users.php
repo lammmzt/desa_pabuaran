@@ -67,11 +67,14 @@ class Users extends BaseController
         $data = [
             'username' => $this->request->getPost('username'),
             'nama_user' => $this->request->getPost('nama_user'),
-            'status_user' => $this->request->getPost('status_user'),
             'alamat_user' => $this->request->getPost('alamat_user'),
             'role' => $this->request->getPost('role'),
             'updated_at' => date('Y-m-d H:i:s')
-        ];
+        ]; 
+        // jika password diisi, maka update password
+        if ($this->request->getPost('password') != '') {
+            $data['password'] = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+        }
         $model->update($id, $data);
         session()->setFlashdata('success', 'Data User berhasil diubah');
         return redirect()->to('/users');
@@ -83,6 +86,25 @@ class Users extends BaseController
         $model->delete($id);
         session()->setFlashdata('success', 'Data User berhasil dihapus');
         return redirect()->to('/users');
+    }
+
+    public function update_status() // Fungsi untuk mengupdate status user
+    {
+        $model = new usersModel(); // Inisialisasi model user
+        $id = $this->request->getPost('id'); // Mengambil ID user dari input
+        $data_jenis_surat = $model->find($id); // Mencari data user berdasarkan ID
+        if ($data_jenis_surat) { // Jika data user ditemukan
+            $status = $data_jenis_surat['status_user'] == '1' ? '0' : '1'; // Toggle status
+            $data = [
+                'id_user' => $id, // ID user yang akan diupdate
+                'status_user' => $status, // Status user yang baru
+                'updated_at' => date('Y-m-d H:i:s'), // Waktu update
+            ];
+            $model->save($data);
+            return $this->response->setJSON(['status' => '200', 'message' => 'Status user berhasil diubah', 'error' => false]); // Mengembalikan response JSON sukses
+        } else {
+            return $this->response->setJSON(['status' => '404', 'message' => 'Data user tidak ditemukan', 'error' => true]); // Mengembalikan response JSON error jika data tidak ditemukan
+        }
     }
 }
 ?>

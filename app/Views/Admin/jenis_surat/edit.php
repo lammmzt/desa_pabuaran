@@ -41,6 +41,16 @@
                             <?= $validation->getError('nama_jenis_surat'); ?>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="kode_jenis_surat">Kode Jenis Surat</label>
+                        <input type="text" name="kode_jenis_surat" id="kode_jenis_surat"
+                            class="form-control <?= ($validation->hasError('kode_jenis_surat')) ? 'is-invalid' : ''; ?>"
+                            required placeholder="Masukkan kode jenis surat"
+                            value="<?= $jenis_surat['kode_jenis_surat']; ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('kode_jenis_surat'); ?>
+                        </div>
+                    </div>
                     <div class="form-group mt-3">
                         <label for="ket_jenis_surat">Ket Jenis Surat</label>
                         <textarea name="ket_jenis_surat" id="ket_jenis_surat"

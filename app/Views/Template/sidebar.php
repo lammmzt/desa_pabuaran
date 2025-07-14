@@ -26,6 +26,11 @@
         Master Data
     </div>
 
+    <li class="nav-item <?= ($menu_active == 'Data_desa') ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= base_url('Data_desa'); ?>">
+            <i class="fas fa-fw fa-building"></i>
+            <span>Profile Desa</span></a>
+    </li>
     <li class="nav-item <?= ($menu_active == 'Persyaratan') ? 'active' : ''; ?>">
         <a class="nav-link" href="<?= base_url('Persyaratan'); ?>">
             <i class="fas fa-fw fa-list"></i>
