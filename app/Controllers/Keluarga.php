@@ -20,7 +20,6 @@ class Keluarga extends BaseController
         return view('Admin/Warga/index', $data); // Mengembalikan view dengan data yang telah disiapkan
     }
 
-
     public function save() // Fungsi untuk menyimpan data Warga baru
     {
         $model = new kartuKeluargaModel(); // Inisialisasi model Kartu Keluarga

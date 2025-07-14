@@ -74,7 +74,7 @@ class Data_desa extends Controller
         $check = $dataDesaModel->first(); // mengambil data desa
         // dd($check);  
         $logo_desa = $this->request->getFile('logo_desa'); // mengambil file logo desa
-    
+        // dd($check);
         if($check){ // jika data desa sudah ada
             if($logo_desa->getError() == 4){ // jika file logo desa tidak diubah
                 $nama_logo_desa = $check['logo_desa']; // set nama logo desa
