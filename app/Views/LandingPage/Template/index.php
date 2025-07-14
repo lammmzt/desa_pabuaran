@@ -190,7 +190,7 @@ $data_desa = $desaModel->first();
 
     <footer id="footer" class="footer dark-background">
         <div class="container copyright text-center mt-4">
-            <a href="<?= base_url('Home'); ?>" class="btn btn-primary mb-2">Login Admin</a>
+            <a href="<?= base_url('Auth'); ?>" class="btn btn-primary mb-2">Login Admin</a>
             <p>© <span>Copyright</span> <strong class="px-1 sitename"><?= $data_desa['nama_desa']; ?></strong> <span>All
                     Rights Reserved</span>
             </p>
