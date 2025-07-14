@@ -190,12 +190,12 @@ $data_desa = $desaModel->first();
 
     <footer id="footer" class="footer dark-background">
         <div class="container copyright text-center mt-4">
+            <a href="<?= base_url('Home'); ?>" class="btn btn-primary">Login Admin</a>
             <p>© <span>Copyright</span> <strong class="px-1 sitename"><?= $data_desa['nama_desa']; ?></strong> <span>All
                     Rights Reserved</span>
             </p>
             <div class="credits">
                 <!-- button to login admin -->
-                <a href="<?= base_url('Home'); ?>" class="btn btn-primary">Login Admin</a>
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
