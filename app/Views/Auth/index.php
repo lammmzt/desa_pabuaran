@@ -42,7 +42,7 @@ $data_desa = $desaModel->first();
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
                                 <img src="<?= base_url('Assets/img/data_desa/'); ?><?= $data_desa['logo_desa']; ?>"
-                                    alt="Logo Sekolah" class="img-fluid w-100">
+                                    alt="Logo Sekolah" class="img-fluid" style="width: 250px; height: 250px;">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">

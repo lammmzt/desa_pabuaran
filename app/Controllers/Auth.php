@@ -12,7 +12,7 @@ class Auth extends BaseController
         $data['validation'] = \Config\Services::validation(); // membuat validasi form
         if(session()->get('logged_in')) // jika sudah login
         {
-            return redirect()->to(base_url('Dashboard')); // mengalihkan ke halaman Dashboard
+            return redirect()->to(base_url('Home')); // mengalihkan ke halaman Dashboard
         }
         return view('Auth/index', $data); // menampilkan view Auth/login
     }
