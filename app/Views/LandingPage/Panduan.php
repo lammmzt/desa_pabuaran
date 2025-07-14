@@ -5,7 +5,7 @@
     style="background-image: url('<?= base_url('Assets/LandingPage/img/bg_apps.png'); ?>');">
     <!-- <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/page-title-bg.jpg);"> -->
     <div class="container position-relative">
-        <h1>Pandunan</h1>
+        <h1>Panduan</h1>
         <!-- <p>
                 Panduan pendukung aplikasi Administrasi Kependudukan.
             </p> -->
