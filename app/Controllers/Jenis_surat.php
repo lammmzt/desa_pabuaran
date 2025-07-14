@@ -113,6 +113,7 @@ class Jenis_surat extends BaseController
         $validation->setRules([
             'nama_jenis_surat' => 'required|is_unique[jenis_surat.nama_jenis_surat,id_jenis_surat,' . $id . ']', // Aturan: harus diisi, unik kecuali untuk id yang sama
             'ket_jenis_surat' => 'required', // Aturan validasi untuk keterangan jenis surat
+            'kode_jenis_surat' => 'required', // Aturan validasi untuk keterangan jenis surat
             'template_jenis_surat' => 'required' // Aturan validasi untuk template jenis surat
         ]);
         if (!$validation->run($this->request->getPost())) { // Jika validasi gagal
@@ -123,6 +124,7 @@ class Jenis_surat extends BaseController
         $data = [ // Data yang akan diupdate
             'nama_jenis_surat' => $this->request->getPost('nama_jenis_surat'), // Mengambil nama jenis surat dari input
             'ket_jenis_surat' => $this->request->getPost('ket_jenis_surat'), // Mengambil keterangan jenis surat dari input
+            'kode_jenis_surat' => $this->request->getPost('kode_jenis_surat'), // Mengambil kode jenis surat dari input
             'template_jenis_surat' => $this->request->getPost('template_jenis_surat'), // Mengambil template jenis surat dari input
             'updated_at' => date('Y-m-d H:i:s') // Waktu update
         ]; 
