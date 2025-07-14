@@ -7,4 +7,5 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'LandingPage::index');
 $routes->get('Panduan', 'LandingPage::Panduan');
+$routes->get('Kontak', 'LandingPage::Kontak');
 $routes->setAutoRoute(true);

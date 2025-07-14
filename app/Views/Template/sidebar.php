@@ -94,6 +94,13 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+    <!-- to landing page -->
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('/'); ?>">
+            <i class=" fas fa-fw fa-globe"></i>
+            <span>Landing Page</span></a>
+    </li>
+    <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
