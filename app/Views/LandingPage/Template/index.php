@@ -194,6 +194,8 @@ $data_desa = $desaModel->first();
                     Rights Reserved</span>
             </p>
             <div class="credits">
+                <!-- button to login admin -->
+                <a href="<?= base_url('Home'); ?>" class="btn btn-primary">Login Admin</a>
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
