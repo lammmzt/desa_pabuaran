@@ -34,7 +34,7 @@ class Auth extends BaseController
                     'role' => $users['role'],
                     'logged_in' => TRUE
                 ]);
-                return redirect()->to(base_url('Dashboard')); // mengalihkan ke halaman Dashboard
+                return redirect()->to(base_url('Home')); // mengalihkan ke halaman Dashboard
             }else{
                 session()->setFlashdata('error', 'Password Salah'); // menampilkan pesan error
                 return redirect()->to(base_url('Auth'))->withInput(); // mengalihkan ke halaman Auth
