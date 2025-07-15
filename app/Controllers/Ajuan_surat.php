@@ -15,6 +15,7 @@ class Ajuan_surat extends BaseController
     public function index() // menampilkan data desa
     {
         $dataDesaModel = new dataDesaModel(); // membuat objek model data desa
+        $pengajuanModel = new pengajuanModel();
         $data = [ // Data yang akan dikirim ke view
             'title' => 'Ajuan Surat', // Judul halaman
             'menu_active' => 'Ajuan_surat', // Menu yang aktif
@@ -33,7 +34,7 @@ class Ajuan_surat extends BaseController
             'id_pengajuan' => $id_pengajuan,
             'id_jenis_surat' => $this->request->getVar('id_jenis_surat'),
             'id_warga' => $this->request->getVar('id_warga'),
-            'ket_pengajuan_pengajuan' => $this->request->getVar('ket_pengajuan_pengajuan'),
+            'keperluan_pengajuan' => $this->request->getVar('keperluan_pengajuan'),
             'ket_pengajuan_pengajuan' => $this->request->getVar('ket_pengajuan_pengajuan'),
             'status_pengajuan' => '0',
             'created_at' => date('Y-m-d H:i:s'),
