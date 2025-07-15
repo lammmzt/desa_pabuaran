@@ -77,7 +77,14 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Ajuan_surat'); ?>"
                             class="<?= $menu_active == 'Ajuan_surat' ? 'active' : ''; ?>">Ajuan Surat</a>
                     </li>
-
+                    <li class="dropdown"><a href="#"><span>
+                                <i class="bi bi-person">
+                            </span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
+                        </ul>
+                    </li>
                     <?php 
                     endif; ?>
                 </ul>
@@ -88,17 +95,8 @@ $data_desa = $desaModel->first();
             <a class="btn-getstarted" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
                 Masuk
             </a>
-            <?php else:
+            <?php endif;
            ?>
-            <li class="dropdown"><a href="#"><span>
-                        <i class="bi bi-person">
-                    </span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
-                </ul>
-            </li>
-            <?php endif; ?>
 
 
         </div>
