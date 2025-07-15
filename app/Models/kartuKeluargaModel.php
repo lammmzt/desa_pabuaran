@@ -25,6 +25,14 @@ class kartuKeluargaModel extends Model
             ->first();
         }
     }
+    public function getKeluargaByIduser($id = false)
+    {
+        return $this
+        ->select('kartu_keluarga.*, users.nama_user')
+        ->join('users', 'users.id_user = kartu_keluarga.id_user')
+        ->where(['kartu_keluarga.id_user' => $id])
+        ->first();
+    }
 }
 
 ?>

@@ -26,30 +26,46 @@ class LandingPage extends BaseController
 
     public function Panduan() // Fungsi untuk menampilkan daftar Warga
     {
-        $model = new kartuKeluargaModel(); // Inisialisasi model Kartu Keluarga
         $desaModel = new dataDesaModel();
         $datas_desa = $desaModel->first();
         $data = [ // Data yang akan dikirim ke view
             'title' => 'Panduan | ' . $datas_desa['nama_desa'], // Judul halaman
             'datas_desa' => $datas_desa,
             'menu_active' => 'Panduan', // Menu yang aktif
-            'keluarga' => $model->getkartuKeluarga(), // Mengambil semua data Warga dari model
             'validation' => \Config\Services::validation()  // Validasi untuk form
         ];
         return view('LandingPage/Panduan', $data); // Mengembalikan view dengan data yang telah disiapkan
     }
     public function Kontak() // Fungsi untuk menampilkan daftar Warga
     {
-        $model = new kartuKeluargaModel(); // Inisialisasi model Kartu Keluarga
         $desaModel = new dataDesaModel();
         $datas_desa = $desaModel->first();
         $data = [ // Data yang akan dikirim ke view
             'title' => 'Kontak | ' . $datas_desa['nama_desa'], // Judul halaman
             'datas_desa' => $datas_desa,
             'menu_active' => 'Kontak', // Menu yang aktif
-            'keluarga' => $model->getkartuKeluarga(), // Mengambil semua data Warga dari model
             'validation' => \Config\Services::validation()  // Validasi untuk form
         ];
         return view('LandingPage/Kontak', $data); // Mengembalikan view dengan data yang telah disiapkan
     }
+    public function Data_keluarga() // Fungsi untuk menampilkan daftar Warga
+    {
+        $desaModel = new dataDesaModel();  // Inisialisasi model Desa
+        $model = new kartuKeluargaModel(); // Inisialisasi model Kartu Keluarga
+        $wargaModel = new wargaModel(); // Inisialisasi model Warga
+        $datas_desa = $desaModel->first(); // Mengambil data Desa
+        $id_user = session()->get('id_user'); // Mengambil ID user
+        $data_keluarga = $model->getKeluargaByIduser($id_user); // Mengambil data Keluarga berdasarkan ID user
+        $anggota_keluarga = $wargaModel->getWargaByIdKartuKeluarga($data_keluarga['id_kartu_keluarga']);
+        $data = [ // Data yang akan dikirim ke view
+            'title' => 'Data keluarga | ' . $datas_desa['nama_desa'], // Judul halaman
+            'datas_desa' => $datas_desa,
+            'menu_active' => 'Data_keluarga', // Menu yang aktif
+            'data_keluarga' => $data_keluarga,
+            'anggota_keluarga' => $anggota_keluarga,
+            'validation' => \Config\Services::validation()  // Validasi untuk form
+        ];
+        return view('LandingPage/Data_keluarga', $data); // Mengembalikan view dengan data yang telah disiapkan
+    }
+    
 }

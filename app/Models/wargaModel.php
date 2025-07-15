@@ -24,6 +24,14 @@ class wargaModel extends Model
             ->first();
         }
     }
+
+    public function getWargaByIdKartuKeluarga($id_KK){
+        return $this
+        ->select('warga.*, kartu_keluarga.nama_kartu_keluarga, kartu_keluarga.alamat_kartu_keluarga, kartu_keluarga.rt_kartu_keluarga, kartu_keluarga.rw_kartu_keluarga')
+        ->join('kartu_keluarga', 'kartu_keluarga.id_kartu_keluarga = warga.id_kartu_keluarga')
+        ->where(['warga.id_kartu_keluarga' => $id_KK])
+        ->findAll();
+    }
 }
 
 ?>

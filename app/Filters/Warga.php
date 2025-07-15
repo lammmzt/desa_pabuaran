@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class Pengguna implements FilterInterface
+class Warga implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {

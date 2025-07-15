@@ -147,7 +147,7 @@
                             <div class="form-group">
                                 <label for="foto_kartu_keluarga">Foto Kartu Keluarga</label>
                                 <input type="file" name="foto_kartu_keluarga" id="foto_kartu_keluarga"
-                                    class="form-control-file" accept=".jpg, .jpeg, .png">
+                                    class="form-control" accept=".jpg, .jpeg, .png" required>
                             </div>
                         </div>
                     </div>
@@ -240,12 +240,12 @@
                                         <?= ($value['status_kartu_keluarga'] == '1') ? 'selected' : ''; ?>>
                                         Aktif
                                     </option>
-                                    <option value="2"
+                                    <!-- <option value="2"
                                         <?= ($value['status_kartu_keluarga'] == '2') ? 'selected' : ''; ?>>
                                         Tidak
-                                        Valid</option>
+                                        Valid</option> -->
                                     <option value="3"
-                                        <?= ($value['status_kartu_keluarga'] == '3') ? 'selected' : ''; ?>>
+                                        <?= ($value['status_kartu_keluarga'] == '0') ? 'selected' : ''; ?>>
                                         Tidak
                                         Aktif</option>
                                 </select>

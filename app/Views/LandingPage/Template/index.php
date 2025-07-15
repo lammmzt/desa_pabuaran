@@ -77,10 +77,8 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Ajuan_surat'); ?>"
                             class="<?= $menu_active == 'Ajuan_surat' ? 'active' : ''; ?>">Ajuan Surat</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" style="width: 50px; height: 50px; font-size: 20px;">
-                            <i class="bi bi-person-fill toggle-dropdown" width="50" height="50"></i>
-                        </a>
+                    <li class="dropdown"><a href="#"><span>Akun</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Profile</a></li>
                             <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
@@ -118,12 +116,12 @@ $data_desa = $desaModel->first();
                         <div class="modal-body">
                             <div class="mb-2">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username"
+                                <input type="text" class="form-control mt-1" id="username" name="username"
                                     placeholder="Masukan nomor kartu keluar" minlength="16" maxlength="16" required>
                             </div>
                             <div class="mb-2">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required
+                                <input type="password" class="form-control mt-1" id="password" name="password" required
                                     placeholder="Masukan password">
                             </div>
                             <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#registerModal"
@@ -156,36 +154,38 @@ $data_desa = $desaModel->first();
                                     <div class="form-group">
                                         <label for="id_kartu_keluarga">No. KK</label>
                                         <input type="text" name="id_kartu_keluarga" id="id_kartu_keluarga"
-                                            class="form-control" required placeholder="Masukkan No. KK" minlength="16"
-                                            maxlength="16">
+                                            class="form-control mt-1" required placeholder="Masukkan No. KK"
+                                            minlength="16" maxlength="16">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <div class="form-group">
                                         <label for="password">Kata Sandi</label>
-                                        <input type="text" name="password" id="password" class="form-control" required
-                                            placeholder="Masukkan kata sandi untuk login" minlength="8">
+                                        <input type="text" name="password" id="password" class="form-control mt-1"
+                                            required placeholder="Masukkan kata sandi untuk login" minlength="8">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <div class="form-group">
                                         <label for="nama_kartu_keluarga">Nama Kartu Keluarga</label>
                                         <input type="text" name="nama_kartu_keluarga" id="nama_kartu_keluarga"
-                                            class="form-control" required placeholder="Masukkan Nama Kartu Keluarga">
+                                            class="form-control mt-1" required
+                                            placeholder="Masukkan Nama Kartu Keluarga">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <div class="form-group">
                                         <label for="alamat_kartu_keluarga">Alamat Kartu Keluarga</label>
                                         <input type="text" name="alamat_kartu_keluarga" id="alamat_kartu_keluarga"
-                                            class="form-control" required placeholder="Masukkan Alamat Kartu Keluarga">
+                                            class="form-control mt-1" required
+                                            placeholder="Masukkan Alamat Kartu Keluarga">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <div class="form-group">
                                         <label for="rt_kartu_keluarga">RT</label>
                                         <input type="text" name="rt_kartu_keluarga" id="rt_kartu_keluarga"
-                                            class="form-control" required placeholder="Masukkan RT Kartu Keluarga"
+                                            class="form-control mt-1" required placeholder="Masukkan RT Kartu Keluarga"
                                             minlength="3" maxlength="3">
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@ $data_desa = $desaModel->first();
                                     <div class="form-group">
                                         <label for="rw_kartu_keluarga">RW</label>
                                         <input type="text" name="rw_kartu_keluarga" id="rw_kartu_keluarga"
-                                            class="form-control" required placeholder="Masukkan RW Kartu Keluarga"
+                                            class="form-control mt-1" required placeholder="Masukkan RW Kartu Keluarga"
                                             minlength="3" maxlength="3">
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@ $data_desa = $desaModel->first();
                                     <div class="form-group">
                                         <label for="no_tpl_kartu_keluarga">No. Whatsapp</label>
                                         <input type="text" name="no_tpl_kartu_keluarga" id="no_tpl_kartu_keluarga"
-                                            class="form-control" required placeholder="Masukkan No. Whatsapp"
+                                            class="form-control mt-1" required placeholder="Masukkan No. Whatsapp"
                                             minlength="10" maxlength="15">
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@ $data_desa = $desaModel->first();
                                     <div class="form-group">
                                         <label for="foto_kartu_keluarga">Foto Kartu Keluarga</label>
                                         <input type="file" name="foto_kartu_keluarga" id="foto_kartu_keluarga"
-                                            class="form-control-file" accept=".jpg, .jpeg, .png">
+                                            class="form-control mt-1" accept=".jpg, .jpeg, .png" required>
                                     </div>
                                 </div>
                             </div>

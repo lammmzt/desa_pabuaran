@@ -13,6 +13,9 @@ use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\Middleware;
+use App\Filters\Admin;
+use App\Filters\Kades;
+use App\Filters\Warga;
 
 class Filters extends BaseFilters
 {
@@ -35,7 +38,10 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
-        'middleware'    => Middleware::class
+        'Middleware'    => Middleware::class,
+        'Admin'         => Admin::class,
+        'Kades'         => Kades::class,
+        'Warga'         => Warga::class
     ];
 
     /**
@@ -71,10 +77,16 @@ class Filters extends BaseFilters
      */
     public array $globals = [
          'before' => [
-            // 'middleware' => ['except' => ['Auth']],
+            'Middleware' => ['except' => ['/','Auth','Auth/*', 'Panduan', 'Kontak', 'Keluarga/saveUser']],
         ],
         'after' => [
-            // 'honeypot',
+           'Admin' => ['except' => [ 
+                '/', 'Auth/logout', 'Auth', 'Data_desa', 'Data_desa/*', 'Home', 'Home/*', 'Jenis_surat', 'Jenis_surat/*', 'Keluarga', 'Keluarga/*', 'Persyaratan', 'Persyaratan/*', 'Users', 'Users/*', 'Panduan', 'Kontak', 'Keluarga/saveUser',
+            ]],
+           'Kades' => ['except' => [ 
+                '/', 'Auth/logout', 'Auth', 'Data_desa', 'Data_desa/*', 'Home', 'Home/*', 'Jenis_surat', 'Jenis_surat/*', 'Keluarga', 'Keluarga/*', 'Persyaratan', 'Persyaratan/*', 'Users', 'Users/*', 'Panduan', 'Kontak', 'Keluarga/saveUser',
+            ]],
+            'Warga' => ['except' => ['/', 'Auth/logout', 'Auth', 'Panduan', 'Kontak', 'Keluarga/saveUser', 'Data_keluarga', 'Keluarga/updateUser', 'Keluarga/updateUserWarga', 'Keluarga/saveUserWarga']],
             // 'secureheaders',
         ],
     ];
