@@ -77,8 +77,7 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Ajuan_surat'); ?>"
                             class="<?= $menu_active == 'Ajuan_surat' ? 'active' : ''; ?>">Ajuan Surat</a>
                     </li>
-                    <li class="dropdown"><a href="#"><span>
-                                <i class="bi bi-person">
+                    <li class="dropdown"><a href="#"><span> <?= session()->get('nama_user'); ?>
                             </span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Profile</a></li>
