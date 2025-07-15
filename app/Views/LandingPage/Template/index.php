@@ -132,7 +132,7 @@ $data_desa = $desaModel->first();
                             </a>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-primary" id="btn_login">Masuk</button>
                         </div>
                     </form>
@@ -215,7 +215,7 @@ $data_desa = $desaModel->first();
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-primary" id="btn_register">Daftar</button>
                         </div>
                     </form>
