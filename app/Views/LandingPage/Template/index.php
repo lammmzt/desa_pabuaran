@@ -77,8 +77,10 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Ajuan_surat'); ?>"
                             class="<?= $menu_active == 'Ajuan_surat' ? 'active' : ''; ?>">Ajuan Surat</a>
                     </li>
-                    <li class="dropdown"><a href="#"><i class="bi bi-person-fill toggle-dropdown" width="50"
-                                height="50"></i></a>
+                    <li class="dropdown">
+                        <a href="#" style="width: 50px; height: 50px; font-size: 20px;">
+                            <i class="bi bi-person-fill toggle-dropdown" width="50" height="50"></i>
+                        </a>
                         <ul>
                             <li><a href="#">Profile</a></li>
                             <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
