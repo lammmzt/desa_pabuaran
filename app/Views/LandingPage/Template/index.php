@@ -122,7 +122,7 @@ $data_desa = $desaModel->first();
                         <h5 class="modal-title" id="registerModalLabel">Register</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="<?= base_url('Keluarga/save'); ?>" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data" id="form_register">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6 mb-2">
@@ -131,6 +131,13 @@ $data_desa = $desaModel->first();
                                         <input type="text" name="id_kartu_keluarga" id="id_kartu_keluarga"
                                             class="form-control" required placeholder="Masukkan No. KK" minlength="16"
                                             maxlength="16">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="form-group">
+                                        <label for="password">Kata Sandi</label>
+                                        <input type="text" name="password" id="password" class="form-control" required
+                                            placeholder="Masukkan kata sandi untuk login" minlength="8">
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-2">
@@ -182,7 +189,7 @@ $data_desa = $desaModel->first();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Daftar</button>
+                            <button type="submit" class="btn btn-primary" id="btn_register">Daftar</button>
                         </div>
                     </form>
                 </div>
@@ -251,7 +258,7 @@ $data_desa = $desaModel->first();
         $('#btn_login').html('Loading...');
         $('#btn_login').attr('disabled', 'disabled');
         $.ajax({
-            url: '<?= base_url('Auth/login'); ?>',
+            url: '<?= base_url('Auth/loginUser'); ?>',
             type: 'POST',
             data: {
                 username: $('#username').val(),
@@ -266,6 +273,31 @@ $data_desa = $desaModel->first();
                 } else {
                     $('#btn_login').html('Masuk');
                     $('#btn_login').removeAttr('disabled');
+                    getSwall('error', 'Gagal', response.data, 'error');
+                }
+            }
+        });
+    });
+
+    $('#form_register').submit(function(e) {
+        e.preventDefault();
+        $('#btn_register').html('Loading...');
+        $('#btn_register').attr('disabled', 'disabled');
+        $.ajax({
+            url: '<?= base_url('Keluarga/saveUser'); ?>',
+            type: 'POST',
+            data: new FormData(this),
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response.status == '200') {
+                    getSwall('success', 'Berhasil', response.data, 'success');
+                    setTimeout(function() {
+                        window.location.href = '<?= base_url('/'); ?>';
+                    }, 1500);
+                } else {
+                    $('#btn_register').html('Daftar');
+                    $('#btn_register').removeAttr('disabled');
                     getSwall('error', 'Gagal', response.data, 'error');
                 }
             }
