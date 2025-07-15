@@ -61,8 +61,10 @@ $data_desa = $desaModel->first();
                 <ul>
                     <li><a href="<?= base_url('/'); ?>"
                             class="<?= $menu_active == 'Home' ? 'active' : ''; ?>">Beranda<br></a></li>
-                    <li><a href="<?= base_url('Panduan'); ?>">Daftar Panduan</a></li>
-                    <li><a href="<?= base_url('Kontak'); ?>">Kontak Kami</a></li>
+                    <li><a href="<?= base_url('Panduan'); ?>"
+                            class="<?= $menu_active == 'Panduan' ? 'active' : ''; ?>">Daftar Panduan</a></li>
+                    <li><a href="<?= base_url('Kontak'); ?>"
+                            class="<?= $menu_active == 'Kontak' ? 'active' : ''; ?>">Kontak Kami</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -85,7 +87,7 @@ $data_desa = $desaModel->first();
                         <h5 class="modal-title" id="loginModalLabel">Login</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="<?= base_url('Login'); ?>" method="post">
+                    <form method="post" id="form_login">
                         <div class="modal-body">
                             <div class="mb-2">
                                 <label for="username" class="form-label">Username</label>
@@ -104,7 +106,7 @@ $data_desa = $desaModel->first();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Masuk</button>
+                            <button type="submit" class="btn btn-primary" id="btn_login">Masuk</button>
                         </div>
                     </form>
                 </div>
@@ -225,6 +227,52 @@ $data_desa = $desaModel->first();
     <!-- Main JS File -->
     <script src="<?= base_url('Assets/LandingPage/'); ?>js/main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.datatables.net/v/bs/jq-3.7.0/dt-2.3.2/datatables.min.css" rel="stylesheet"
+        integrity="sha384-/qA/rSMC/E258DEP5UyyRXa4cNYTiVGGqu3f5++Sxp0bh9eCVx7CSNp4S9U+qg+o" crossorigin="anonymous">
+
+    <script src="https://cdn.datatables.net/v/bs/jq-3.7.0/dt-2.3.2/datatables.min.js"
+        integrity="sha384-WSASJL2VibwbTUgP7Q+MuxGakROneZfkjBd0t6i3LYEkZNAWoJbikeVL8Iyd1n2v" crossorigin="anonymous">
+    </script>
+
+    <script>
+    function getSwall(icon, title, text, type) {
+        Swal.fire({
+            icon: icon,
+            title: title,
+            text: text,
+            showConfirmButton: true,
+            timer: 1500
+        });
+    }
+
+    $('#form_login').submit(function(e) {
+        e.preventDefault();
+        $('#btn_login').html('Loading...');
+        $('#btn_login').attr('disabled', 'disabled');
+        $.ajax({
+            url: '<?= base_url('Auth/login'); ?>',
+            type: 'POST',
+            data: {
+                username: $('#username').val(),
+                password: $('#password').val()
+            },
+            success: function(response) {
+                if (response.status == '200') {
+                    sweetalert('success', 'Berhasil', response.data, 'success');
+                    setTimeout(function() {
+                        window.location.href = '<?= base_url('/'); ?>';
+                    }, 1500);
+                } else {
+                    $('#btn_login').html('Masuk');
+                    $('#btn_login').removeAttr('disabled');
+                    sweetalert('error', 'Gagal', response.data, 'error');
+                }
+            }
+        });
+    });
+    </script>
+    <?= $this->renderSection('script'); ?>
 </body>
 
 </html>

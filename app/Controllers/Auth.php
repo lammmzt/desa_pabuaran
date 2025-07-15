@@ -45,6 +45,45 @@ class Auth extends BaseController
         }
     }
 
+    public function loginUser()
+    {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+        // dd($username, $password);
+        $model = new usersModel();
+        $user = $model->where('username', $username)->first();
+
+        if($user){
+            if(password_verify($password, $user['password'])){
+                $ses_data = [
+                    'id_user' => $users['id_user'],
+                    'nama_user' => $users['nama_user'],
+                    'username' => $users['username'],
+                    'role' => $users['role'],
+                    'logged_in' => TRUE
+                ];
+                session()->set($ses_data);
+                return $this->response->setJSON([
+                    'error' => false,   
+                    'status' => '200',
+                    'data' => 'Login Berhasil',
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'error' => true,
+                    'status' => 401,
+                    'data' => 'Password Salah',
+                ]);
+            }
+        }else{
+            return $this->response->setJSON([
+                'error' => true,
+                'status' => 401,
+                'data' => 'Username Tidak Ditemukan',
+            ]);
+        }
+    }
+
     public function logout() // proses logout
     {
         session()->destroy(); // menghapus semua session
