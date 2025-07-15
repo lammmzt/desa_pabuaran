@@ -39,7 +39,7 @@ $data_desa = $desaModel->first();
 
     <!-- Main CSS File -->
     <link href="<?= base_url('Assets/LandingPage/'); ?>css/main.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- =======================================================
   * Template Name: Logis
   * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
@@ -75,7 +75,7 @@ $data_desa = $desaModel->first();
                             class="<?= $menu_active == 'Data_keluarga' ? 'active' : ''; ?>">Data Keluarga</a>
                     </li>
                     <li><a href="<?= base_url('Ajuan'); ?>"
-                            class="<?= $menu_active == 'Ajuan' ? 'active' : ''; ?>">Ajuan Surat</a>
+                            class="<?= $menu_active == 'Ajuan' ? 'active' : ''; ?>">Pengajuan Surat</a>
                     </li>
                     <li class="dropdown"><a href="#"><span>Akun</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -126,7 +126,7 @@ $data_desa = $desaModel->first();
                             </div>
                             <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#registerModal"
                                 data-dismiss="modal" aria-label="Close">
-                                Belum punya akun?
+                                Belum punya akun? Daftar sekarang
                             </a>
                         </div>
                         <div class="modal-footer">
@@ -273,6 +273,7 @@ $data_desa = $desaModel->first();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
     function getSwall(icon, title, text, type) {
         Swal.fire({

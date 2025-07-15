@@ -5,7 +5,7 @@ use CodeIgniter\Controller;
 use App\Models\dataDesaModel;
 use Ramsey\Uuid\Uuid;
 
-class Data_desa extends Controller
+class Data_desa extends BaseController
 {
     public function index() // menampilkan data desa
     {

@@ -214,6 +214,18 @@ class Jenis_surat extends BaseController
             return redirect()->to('/Jenis_surat'); // Redirect ke halaman jenis surat
         }
     }
+
+    public function getPersyartan() // Fungsi untuk mendapatkan persyaratan berdasarkan ID jenis surat
+    {
+        $detaiJenisSuratModel = new detailJenisSuratModel(); // Inisialisasi model detail jenis surat
+        $id = $this->request->getPost('id'); // Mengambil ID jenis surat dari input
+        $persyaratan = $detaiJenisSuratModel->getDetailJenisSuratByJenisSurat($id); // Mendapatkan persyaratan berdasarkan ID jenis surat
+        if($persyaratan){ // Jika persyaratan ditemukan
+            return $this->response->setJSON(['status' => '200', 'error' => false, 'data' => $persyaratan]); // Mengembalikan response JSON sukses
+        }else{ // Jika persyaratan tidak ditemukan
+            return $this->response->setJSON(['status' => '404', 'error' => true, 'data' =>'Persyaratan tidak ditemukan']); // Mengembalikan response JSON error
+        }
+    }
     
 }
 ?>

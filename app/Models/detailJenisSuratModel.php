@@ -29,5 +29,15 @@ class detailJenisSuratModel extends Model
             ->where(['detail_jenis_surat.id_detail_jenis_surat' => $id_detail_jenis_surat])
             ->first();
     }
+
+    public function getDetailJenisSuratByJenisSurat($id_jenis_surat)
+    { 
+        return $this
+                ->select('detail_jenis_surat.*, persyaratan.nama_persyaratan, jenis_surat.nama_jenis_surat')
+                ->join('persyaratan', 'persyaratan.id_persyaratan = detail_jenis_surat.id_persyaratan')
+                ->join('jenis_surat', 'jenis_surat.id_jenis_surat = detail_jenis_surat.id_jenis_surat')
+                ->where(['detail_jenis_surat.id_jenis_surat' => $id_jenis_surat])
+                ->findAll();
+    }
 }
 ?>

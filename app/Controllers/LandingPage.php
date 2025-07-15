@@ -6,6 +6,8 @@ use App\Models\wargaModel;
 use App\Models\usersModel;
 use App\Models\dataDesaModel;
 use App\Models\pengajuanModel;
+use App\Models\jenisSuratModel;
+use App\Models\detailJenisSuratModel;
 use Ramsey\Uuid\Uuid;
 
 class LandingPage extends BaseController
@@ -72,13 +74,22 @@ class LandingPage extends BaseController
     public function Ajuan(){
         $desaModel = new dataDesaModel();
         $pengajuanModel = new pengajuanModel();
+        $kartuKeluargaModel = new kartuKeluargaModel();
+        $wargaModel = new wargaModel();
+        $jenisSuratModel = new jenisSuratModel();
         $datas_desa = $desaModel->first();
         $id_user = session()->get('id_user');
+        $data_keluarga = $kartuKeluargaModel->getKeluargaByIduser($id_user);
         $data_pengajuan = $pengajuanModel->getAjuanByIdUser($id_user);
+        $data_warga = $wargaModel->getWargaByIdKartuKeluarga($data_keluarga['id_kartu_keluarga']);
         // dd($data_pengajuan);
         $data = [ // Data yang akan dikirim ke view
             'title' => 'Ajuan Surat | ' . $datas_desa['nama_desa'], // Judul halaman
             'datas_desa' => $datas_desa,
+            'data_pengajuan' => $data_pengajuan,
+            'data_warga' => $data_warga,
+            'data_keluarga' => $data_keluarga,
+            'data_jenis_surat' => $jenisSuratModel->where('status_jenis_surat', '1')->findAll(),
             'menu_active' => 'Ajuan', // Menu yang aktif
             'validation' => \Config\Services::validation()  // Validasi untuk form
         ];

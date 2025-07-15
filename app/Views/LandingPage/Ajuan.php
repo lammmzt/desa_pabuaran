@@ -47,16 +47,41 @@
                     <thead class="thead-light">
                         <tr class="text-center">
                             <th width="5%" class="text-center">No</th>
-                            <th>Nama</th>
-                            <th class="text-center">NIK</th>
-                            <th width="10%" class="text-center">SHDK</th>
-                            <th class="text-center">KTP</th>
-                            <th class="text-center">Status</th>
-                            <th>Aksi</th>
+                            <th class="text-center" width="10%">Tanggal</th>
+                            <th>Nama Pemohon</th>
+                            <th>Jenis Surat</th>
+                            <th>Keperluan</th>
+                            <th width="10%" class="text-center">Status</th>
+                            <th class="text-center" width="10%">File</th>
+                            <th width="15%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        $no = 1;
+                        foreach ($data_pengajuan as $row) : ?>
+                        <tr class="text-center">
+                            <td class="text-center"><?= $no++; ?></td>
+                            <td class="text-center"><?= date('d-m-Y', strtotime($row['created_at'])); ?></td>
+                            <td style="text-align: left;"><?= $row['nama_warga']; ?></td>
+                            <td style="text-align: left;"><?= $row['nama_jenis_surat']; ?></td>
+                            <td style="text-align: left;"><?= $row['keperluan_pengajuan']; ?></td>
+                            <td class="text-center">
+                                <?php if ($row['status_pengajuan'] == '1') : ?>
+                                Menunggu
+                                <?php elseif ($row['status_pengajuan'] == '2') : ?>
+                                Disetujui
+                                <?php elseif ($row['status_pengajuan'] == '3') : ?>
+                                Ditolak
+                                <?php endif; ?>
+                            </td>
+                            <td class="text-center">
 
+                            </td>
+                            <td class="text-center">
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -71,119 +96,54 @@
                 <h5 class="modal-title" id="addModalLabel">Tambah Data</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('Keluarga/saveUserWarga'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('Ajuan_surat/save'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-2">
-                                <label for="id_warga">No. NIK</label>
-                                <input type="text" name="id_warga" id="id_warga" class="form-control mt-1" required
-                                    placeholder="Masukkan No. KK" minlength="16" maxlength="16">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="nama_warga">Nama Lengkap</label>
-                                <input type="text" name="nama_warga" id="nama_warga" class="form-control mt-1" required
-                                    placeholder="Masukkan Nama Lengkap">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="tempat_lahir_warga">Tempat Lahir</label>
-                                <input type="text" name="tempat_lahir_warga" id="tempat_lahir_warga"
-                                    class="form-control mt-1" required placeholder="Masukkan Tempat Lahir">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="tanggal_lahir_warga">Tanggal Lahir</label>
-                                <input type="date" name="tanggal_lahir_warga" id="tanggal_lahir_warga"
-                                    class="form-control mt-1" required min="1900-01-01" max="<?= date('Y-m-d'); ?>">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="agama_warga">Agama</label>
-                                <select name="agama_warga" id="agama_warga" class="form-control mt-1" required>
-                                    <option value="">Pilih Agama</option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Kristen">Kristen</option>
-                                    <option value="Katolik">Katolik</option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Buddha">Buddha</option>
-                                    <option value="Konghucu">Konghucu</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="pekerjaan_warga">Pekerjaan</label>
-                                <input type="text" name="pekerjaan_warga" id="pekerjaan_warga" class="form-control mt-1"
-                                    required placeholder="Masukkan Pekerjaan">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="status_kawin_warga">Status Kawin</label>
-                                <select name="status_kawin_warga" id="status_kawin_warga" class="form-control mt-1"
-                                    required>
-                                    <option value="">Pilih Status Kawin</option>
-                                    <option value="Kawin">Kawin</option>
-                                    <option value="Belum Kawin">Belum Kawin</option>
-                                    <option value="Cerai Hidup">Cerai Hidup</option>
-                                    <option value="Cerai Mati">Cerai Mati</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="shdk_warga">SHDK</label>
-                                <select name="shdk_warga" id="shdk_warga" class="form-control mt-1" required>
-                                    <option value="">Pilih SHDK</option>
-                                    <option value="Kepala Keluarga">Kepala Keluarga</option>
-                                    <option value="Istri">Istri</option>
-                                    <option value="Anak">Anak</option>
-                                    <option value="Orang Tua">Orang Tua</option>
-                                    <option value="Lainnya">Lainnya</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="kebangsaan_warga">Kebangsaan</label>
-                                <input type="text" name="kebangsaan_warga" id="kebangsaan_warga"
-                                    class="form-control mt-1" required placeholder="Masukkan Kebangsaan">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group mb-2">
-                                <label for="pendidikan_warga">Pendidikan</label>
-                                <select name="pendidikan_warga" id="pendidikan_warga" class="form-control mt-1"
-                                    required>
-                                    <option value="">Pilih Pendidikan</option>
-                                    <option value="TIDAK / BELUM SEKOLAH">TIDAK / BELUM SEKOLAH</option>
-                                    <option value="TAMAT SD / SEDERAJAT">TAMAT SD / SEDERAJAT</option>
-                                    <option value="SLTA / SEDERAJAT">SLTA / SEDERAJAT</option>
-                                    <option value="SLTP/SEDERAJAT">SLTP/SEDERAJAT</option>
-                                    <option value="BELUM TAMAT SD/SEDERAJAT">BELUM TAMAT SD/SEDERAJAT</option>
-                                    <option value="DIPLOMA IV/ STRATA I">DIPLOMA IV/ STRATA I</option>
-                                    <option value="DIPLOMA I / II">DIPLOMA I / II</option>
-                                    <option value="AKADEMI/ DIPLOMA III/S. MUDA">AKADEMI/ DIPLOMA III/S. MUDA
+                                <label for="id_warga">Nama Pemohon</label>
+                                <select name="id_warga" id="id_warga" class="form-control mt-1" required>
+                                    <option value="">Pilih Nama Pemohon</option>
+                                    <?php foreach ($data_warga as $value) : ?>
+                                    <option value="<?= $value['id_warga']; ?>">
+                                        <?= $value['nama_warga']; ?>
                                     </option>
-                                    <option value="STRATA II">STRATA II</option>
-                                    <option value="STRATA III">STRATA III</option>
-
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-2">
-                                <label for="berkas_ktp_warga">Berkas KTP</label>
-                                <input type="file" name="berkas_ktp_warga" id="berkas_ktp_warga"
-                                    class="form-control mt-1" required accept=".jpg, .jpeg, .png">
+                                <label for="id_jenis_surat">Jenis Surat</label>
+                                <select name="id_jenis_surat" id="id_jenis_surat" class="form-control mt-1" required
+                                    style="width: 100%;">
+                                    <option value="">Pilih Jenis Surat</option>
+                                    <?php foreach ($data_jenis_surat as $value) : ?>
+                                    <option value="<?= $value['id_jenis_surat']; ?>">
+                                        <?= $value['nama_jenis_surat']; ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="keperluan_pengajuan">Keperluan</label>
+                                <input type="text" name="keperluan_pengajuan" id="keperluan_pengajuan"
+                                    class="form-control mt-1" required placeholder="Masukkan Keperluan Pengajuan">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="ket_pengajuan_pengajuan">Ket Pengajuan</label>
+                                <textarea name="ket_pengajuan_pengajuan" id="ket_pengajuan_pengajuan"
+                                    class="form-control mt-1" required
+                                    placeholder="Masukkan Keterangan Pengajuan"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="file_pengajuan" style="display: none;">
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -208,6 +168,7 @@ $(document).ready(function() {
         });
     }, 4000);
 });
+
 $(document).ready(function() {
     $('#anggota_keluarga').DataTable({
         "order": [
@@ -215,6 +176,48 @@ $(document).ready(function() {
         ],
         "language": {
             "emptyTable": "Data masih kosong"
+        }
+    });
+});
+// when change jenis_surat
+$('#id_jenis_surat').change(function() {
+    var id_jenis_surat = $(this).val();
+    console.log(id_jenis_surat);
+    $.ajax({
+        url: '<?= base_url('Jenis_surat/getPersyartan'); ?>',
+        type: 'POST',
+        data: {
+            id: id_jenis_surat
+        },
+        success: function(response) {
+            console.log(response);
+            if (response.status == '200') {
+                // $('#file_pengajuan').html(response.data);
+                // empty
+                $('#file_pengajuan').html('');
+                var html = '';
+                // add judul
+                html += '<hr style="border: 1px solid #000; margin: 20px 0px;">';
+                html += '<h6>File Persyaratan</h6>';
+                $.each(response.data, function(index, value) {
+                    html += '<div class="col-md-6">' +
+                        '<div class="form-group mb-2">' +
+                        '<label for="' + value.id_persyaratan + '">' + value
+                        .nama_persyaratan +
+                        '</label>' +
+                        '<input type="file" name="' + value.id_persyaratan + '" id="' +
+                        value.id_persyaratan +
+                        '" class="form-control mt-1" required accept="image/*">' +
+                        '</div>' +
+                        '</div>';
+                });
+                $('#file_pengajuan').html(html);
+                $('#file_pengajuan').show();
+            } else {
+                // empty
+                $('#file_pengajuan').html('');
+                $('#file_pengajuan').hide();
+            }
         }
     });
 });
