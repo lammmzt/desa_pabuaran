@@ -87,7 +87,7 @@ class Auth extends BaseController
     public function logout() // proses logout
     {
         session()->destroy(); // menghapus semua session
-        return redirect()->to(base_url('Auth')); // mengalihkan ke halaman Auth
+        return redirect()->to(base_url('/')); // mengalihkan ke halaman Auth
     }
 }
 ?>
