@@ -69,8 +69,8 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Kontak'); ?>"
                             class="<?= $menu_active == 'Kontak' ? 'active' : ''; ?>">Kontak Kami</a></li>
                     <?php 
-                    dd(session()->get('role'));
-                    if (session()->get('role') == 'warga') : ?>
+                    // dd(session()->get('role'));
+                    if (session()->get('role') == 'Warga') : ?>
                     <li><a href="<?= base_url('Data_keluarga'); ?>"
                             class="<?= $menu_active == 'Data_keluarga' ? 'active' : ''; ?>">Data Keluarga</a>
                     </li>
