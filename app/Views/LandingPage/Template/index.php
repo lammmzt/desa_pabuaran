@@ -69,6 +69,7 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Kontak'); ?>"
                             class="<?= $menu_active == 'Kontak' ? 'active' : ''; ?>">Kontak Kami</a></li>
                     <?php 
+                    dd(session()->get('role'));
                     if (session()->get('role') == 'warga') : ?>
                     <li><a href="<?= base_url('Data_keluarga'); ?>"
                             class="<?= $menu_active == 'Data_keluarga' ? 'active' : ''; ?>">Data Keluarga</a>
@@ -76,22 +77,28 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Ajuan_surat'); ?>"
                             class="<?= $menu_active == 'Ajuan_surat' ? 'active' : ''; ?>">Ajuan Surat</a>
                     </li>
-                    <li class="dropdown"><a href="#"><span>
-                                <i class="bi bi-person">
-                            </span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
-                        </ul>
-                    </li>
+
                     <?php 
                     endif; ?>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
+            <?php 
+           if (!session()->get('role')) : ?>
             <a class="btn-getstarted" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
                 Masuk
             </a>
+            <?php else:
+           ?>
+            <li class="dropdown"><a href="#"><span>
+                        <i class="bi bi-person">
+                    </span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
+                </ul>
+            </li>
+            <?php endif; ?>
 
 
         </div>
