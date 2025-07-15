@@ -227,7 +227,7 @@ $data_desa = $desaModel->first();
     <!-- Main JS File -->
     <script src="<?= base_url('Assets/LandingPage/'); ?>js/main.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/getSwall2@11"></script>
     <link href="https://cdn.datatables.net/v/bs/jq-3.7.0/dt-2.3.2/datatables.min.css" rel="stylesheet"
         integrity="sha384-/qA/rSMC/E258DEP5UyyRXa4cNYTiVGGqu3f5++Sxp0bh9eCVx7CSNp4S9U+qg+o" crossorigin="anonymous">
 
@@ -259,14 +259,14 @@ $data_desa = $desaModel->first();
             },
             success: function(response) {
                 if (response.status == '200') {
-                    sweetalert('success', 'Berhasil', response.data, 'success');
+                    getSwall('success', 'Berhasil', response.data, 'success');
                     setTimeout(function() {
                         window.location.href = '<?= base_url('/'); ?>';
                     }, 1500);
                 } else {
                     $('#btn_login').html('Masuk');
                     $('#btn_login').removeAttr('disabled');
-                    sweetalert('error', 'Gagal', response.data, 'error');
+                    getSwall('error', 'Gagal', response.data, 'error');
                 }
             }
         });
