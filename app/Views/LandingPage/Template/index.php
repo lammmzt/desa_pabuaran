@@ -25,7 +25,10 @@ $data_desa = $desaModel->first();
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.3.2/css/dataTables.bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1g2H1fNHRRu417FjexF+UjrxhQPuW0MLZmlY2HlosNdoYPCMmXCLgutw1Q4DcntD" crossorigin="anonymous">
 
+    </script>
     <!-- Vendor CSS Files -->
     <link href="<?= base_url('Assets/LandingPage/'); ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url('Assets/LandingPage/'); ?>vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -234,12 +237,16 @@ $data_desa = $desaModel->first();
     <!-- Main JS File -->
     <script src="<?= base_url('Assets/LandingPage/'); ?>js/main.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/getSwall2@11"></script>
-    <link href="https://cdn.datatables.net/v/bs/jq-3.7.0/dt-2.3.2/datatables.min.css" rel="stylesheet"
-        integrity="sha384-/qA/rSMC/E258DEP5UyyRXa4cNYTiVGGqu3f5++Sxp0bh9eCVx7CSNp4S9U+qg+o" crossorigin="anonymous">
-
-    <script src="https://cdn.datatables.net/v/bs/jq-3.7.0/dt-2.3.2/datatables.min.js"
-        integrity="sha384-WSASJL2VibwbTUgP7Q+MuxGakROneZfkjBd0t6i3LYEkZNAWoJbikeVL8Iyd1n2v" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha384-NXgwF8Kv9SSAr+jemKKcbvQsz+teULH/a5UNJvZc6kP47hZgl62M1vGnw6gHQhb1" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"
+        integrity="sha384-RZEqG156bBQSxYY9lwjUz/nKVkqYj/QNK9dEjjyJ/EVTO7ndWwk6ZWEkvaKdRm/U" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap.min.js"
+        integrity="sha384-sGyRALq7MyoP7CKLGv+7/zAUHUOmADi8UQJmIVheAkhwstx5uB1S/kQb9FrS6xNs" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     </script>
 
     <script>
