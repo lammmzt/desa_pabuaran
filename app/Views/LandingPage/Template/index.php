@@ -296,15 +296,16 @@ $data_desa = $desaModel->first();
                 password: $('#password').val()
             },
             success: function(response) {
-                if (response.status == '200') {
+                if (response.error == true) {
+                    $('#btn_login').html('Masuk');
+                    $('#btn_login').removeAttr('disabled');
+                    getSwall('error', 'Gagal', response.data, 'error');
+
+                } else {
                     // getSwall('success', 'Berhasil', response.data, 'success');
                     setTimeout(function() {
                         window.location.href = '<?= base_url('/'); ?>';
                     }, 1500);
-                } else {
-                    $('#btn_login').html('Masuk');
-                    $('#btn_login').removeAttr('disabled');
-                    getSwall('error', 'Gagal', response.data, 'error');
                 }
             }
         });
