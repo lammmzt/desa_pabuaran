@@ -5,6 +5,7 @@ use App\Models\kartuKeluargaModel;
 use App\Models\wargaModel;
 use App\Models\usersModel;
 use App\Models\dataDesaModel;
+use App\Models\pengajuanModel;
 use Ramsey\Uuid\Uuid;
 
 class LandingPage extends BaseController
@@ -68,4 +69,19 @@ class LandingPage extends BaseController
         return view('LandingPage/Data_keluarga', $data); // Mengembalikan view dengan data yang telah disiapkan
     }
     
+    public function Ajuan(){
+        $desaModel = new dataDesaModel();
+        $pengajuanModel = new pengajuanModel();
+        $datas_desa = $desaModel->first();
+        $id_user = session()->get('id_user');
+        $data_pengajuan = $pengajuanModel->getAjuanByIdUser($id_user);
+        // dd($data_pengajuan);
+        $data = [ // Data yang akan dikirim ke view
+            'title' => 'Ajuan Surat | ' . $datas_desa['nama_desa'], // Judul halaman
+            'datas_desa' => $datas_desa,
+            'menu_active' => 'Ajuan', // Menu yang aktif
+            'validation' => \Config\Services::validation()  // Validasi untuk form
+        ];
+        return view('LandingPage/Ajuan', $data); // Mengembalikan view dengan data yang telah disiapkan
+    }
 }

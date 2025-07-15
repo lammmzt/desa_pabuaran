@@ -74,8 +74,8 @@ $data_desa = $desaModel->first();
                     <li><a href="<?= base_url('Data_keluarga'); ?>"
                             class="<?= $menu_active == 'Data_keluarga' ? 'active' : ''; ?>">Data Keluarga</a>
                     </li>
-                    <li><a href="<?= base_url('Ajuan_surat'); ?>"
-                            class="<?= $menu_active == 'Ajuan_surat' ? 'active' : ''; ?>">Ajuan Surat</a>
+                    <li><a href="<?= base_url('Ajuan'); ?>"
+                            class="<?= $menu_active == 'Ajuan' ? 'active' : ''; ?>">Ajuan Surat</a>
                     </li>
                     <li class="dropdown"><a href="#"><span>Akun</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>

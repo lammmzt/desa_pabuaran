@@ -86,7 +86,7 @@ class Filters extends BaseFilters
            'Kades' => ['except' => [ 
                 '/', 'Auth/logout', 'Auth', 'Data_desa', 'Data_desa/*', 'Home', 'Home/*', 'Jenis_surat', 'Jenis_surat/*', 'Keluarga', 'Keluarga/*', 'Persyaratan', 'Persyaratan/*', 'Users', 'Users/*', 'Panduan', 'Kontak', 'Keluarga/saveUser',
             ]],
-            'Warga' => ['except' => ['/', 'Auth/logout', 'Auth', 'Panduan', 'Kontak', 'Keluarga/saveUser', 'Data_keluarga', 'Keluarga/updateUser', 'Keluarga/updateUserWarga', 'Keluarga/saveUserWarga']],
+            'Warga' => ['except' => ['/', 'Auth/logout', 'Auth', 'Panduan', 'Kontak', 'Keluarga/saveUser', 'Data_keluarga', 'Keluarga/updateUser', 'Keluarga/updateUserWarga', 'Keluarga/saveUserWarga', 'Ajuan']],
             // 'secureheaders',
         ],
     ];
