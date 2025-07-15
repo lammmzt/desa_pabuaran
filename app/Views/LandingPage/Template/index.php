@@ -297,7 +297,7 @@ $data_desa = $desaModel->first();
             },
             success: function(response) {
                 if (response.status == '200') {
-                    getSwall('success', 'Berhasil', response.data, 'success');
+                    // getSwall('success', 'Berhasil', response.data, 'success');
                     setTimeout(function() {
                         window.location.href = '<?= base_url('/'); ?>';
                     }, 1500);
