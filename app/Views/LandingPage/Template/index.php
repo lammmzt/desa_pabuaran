@@ -117,7 +117,7 @@ $data_desa = $desaModel->first();
                             <div class="mb-2">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control mt-1" id="username" name="username"
-                                    placeholder="Masukan nomor kartu keluar" minlength="16" maxlength="16" required>
+                                    placeholder="Masukan nomor kartu keluarga" minlength="16" maxlength="16" required>
                             </div>
                             <div class="mb-2">
                                 <label for="password" class="form-label">Password</label>
