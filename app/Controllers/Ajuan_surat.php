@@ -276,7 +276,7 @@ class Ajuan_surat extends BaseController
             $no_surat = ($surat_terakhir != null ? $surat_terakhir['no_surat'] + 1 : 1);
             $data_jenis_surat = $jenisSuratModel->find($data_pengajuan['id_jenis_surat']);
              $bulan_indo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']; // array bulan indo
-             dd($data_jenis_surat, $data_pengajuan, $no_surat);
+             dd($data_jenis_surat, $data_pengajuan, $surat_terakhir);
             $id_surat = 'SR-' . date('Y') . '-' . $no_surat;
             $template_surat = $data_jenis_surat['template_jenis_surat'];
             $isi_surat['nomor_surat'] = $data_jenis_surat['kode_jenis_surat'] . '/' . $no_surat ;
