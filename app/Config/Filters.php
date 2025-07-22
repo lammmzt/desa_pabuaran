@@ -86,7 +86,7 @@ class Filters extends BaseFilters
            'Kades' => ['except' => [ 
                 '/', 'Auth/logout', 'Auth', 'Data_desa', 'Data_desa/*', 'Home', 'Home/*', 'Jenis_surat', 'Jenis_surat/*', 'Keluarga', 'Keluarga/*', 'Persyaratan', 'Persyaratan/*', 'Users', 'Users/*', 'Panduan', 'Kontak', 'Keluarga/saveUser', 'Ajuan_surat',  'Ajuan_surat/*', 'Laporan', 'Laporan/*',
             ]],
-            'Warga' => ['except' => ['/', 'Auth/logout', 'Auth', 'Panduan', 'Kontak', 'Keluarga/saveUser', 'Data_keluarga', 'Keluarga/updateUser', 'Keluarga/updateUserWarga', 'Keluarga/saveUserWarga', 'Ajuan', 'Jenis_surat/getPersyartan','Ajuan_surat/save', 'Ajuan_surat/preview_hasil/*', 'Ajuan_surat/updateAdmin','Profile','LandingPage/updateUser']],
+            'Warga' => ['except' => ['/', 'Auth/logout', 'Auth', 'Panduan', 'Kontak', 'Keluarga/saveUser', 'Data_keluarga', 'Keluarga/updateUser', 'Keluarga/updateUserWarga', 'Keluarga/saveUserWarga', 'Ajuan', 'Jenis_surat/getPersyartan','Ajuan_surat/save', 'Ajuan_surat/preview_hasil/*', 'Ajuan_surat/updateUser','Profile','LandingPage/updateUser']],
             // 'secureheaders',
         ],
     ];

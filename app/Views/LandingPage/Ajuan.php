@@ -183,7 +183,7 @@ $data_detail_pengajuan = $detailPengajuanModel->getDetailPengajuanByIdPengajuan(
                 <h5 class="modal-title" id="addModalLabel">Edit Data</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('Ajuan_surat/updateAdmin'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('Ajuan_surat/updateUser'); ?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id_pengajuan" value="<?= $row['id_pengajuan']; ?>">
                 <div class="modal-body">
                     <div class="row">
