@@ -54,7 +54,7 @@ class suratModel extends Model
     public function getNomorSurat(){
         return $this
                 ->select('no_surat')
-                ->where('YEAR(no_surat)', date('Y'))
+                ->where('YEAR(tanggal_surat)', date('Y'))
                 ->orderBy('no_surat', 'DESC')
                 ->first();
     }
