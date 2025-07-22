@@ -145,6 +145,18 @@
                                     placeholder="Masukkan Nama Lengkap">
                             </div>
                         </div>
+                        <!-- jenis_kelamin_warga -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="jenis_kelamin_warga">Jenis Kelamin</label>
+                                <select name="jenis_kelamin_warga" id="jenis_kelamin_warga" class="form-control"
+                                    required>
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="tempat_lahir_warga">Tempat Lahir</label>
@@ -280,6 +292,23 @@
                                 <label for="nama_warga">Nama Lengkap</label>
                                 <input type="text" name="nama_warga" id="nama_warga" class="form-control" required
                                     placeholder="Masukkan Nama Lengkap" value="<?= $value['nama_warga']; ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="jenis_kelamin_warga">Jenis Kelamin</label>
+                                <select name="jenis_kelamin_warga" id="jenis_kelamin_warga" class="form-control"
+                                    required>
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="Laki-laki"
+                                        <?= $value['jenis_kelamin_warga'] == 'Laki-laki' ? 'selected' : ''; ?>>
+                                        Laki-laki
+                                    </option>
+                                    <option value="Perempuan"
+                                        <?= $value['jenis_kelamin_warga'] == 'Perempuan' ? 'selected' : ''; ?>>
+                                        Perempuan
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">

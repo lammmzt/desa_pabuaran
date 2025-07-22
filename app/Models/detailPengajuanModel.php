@@ -23,7 +23,24 @@ class detailPengajuanModel extends Model
                 ->findAll();
         }
 
-        return $this->where(['id_detail_pengajuan' => $id_detail_pengajuan])->first();
+        return $this
+                ->select('detail_pengajuan.*, persyaratan.nama_persyaratan, jenis_surat.nama_jenis_surat')
+                ->join('persyaratan', 'persyaratan.id_persyaratan = detail_pengajuan.id_persyaratan')
+                ->join('pengajuan', 'pengajuan.id_pengajuan = detail_pengajuan.id_pengajuan')
+                ->join('jenis_surat', 'jenis_surat.id_jenis_surat = pengajuan.id_jenis_surat')
+                ->where(['detail_pengajuan.id_detail_pengajuan' => $id_detail_pengajuan])
+                ->first();
+    }
+
+    public function getDetailPengajuanByIdPengajuan($id_pengajuan)
+    {
+        return $this
+                ->select('detail_pengajuan.*, persyaratan.nama_persyaratan, jenis_surat.nama_jenis_surat')
+                ->join('persyaratan', 'persyaratan.id_persyaratan = detail_pengajuan.id_persyaratan')
+                ->join('pengajuan', 'pengajuan.id_pengajuan = detail_pengajuan.id_pengajuan')
+                ->join('jenis_surat', 'jenis_surat.id_jenis_surat = pengajuan.id_jenis_surat')
+                ->where(['detail_pengajuan.id_pengajuan' => $id_pengajuan])
+                ->findAll();
     }
 }
 ?>

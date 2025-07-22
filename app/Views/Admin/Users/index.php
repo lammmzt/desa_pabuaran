@@ -124,9 +124,19 @@
                         <label for="role">Role</label>
                         <select name="role" id="role" class="form-control" required placeholder="Masukkan Role">
                             <option value="">Pilih Role</option>
+
+                            <?php 
+                            if(session()->get('role') == 'Admin'):
+                            ?>
+                            <option value="Warga">Warga</option>
+                            <?php 
+                            endif; 
+                            if(session()->get('role') == 'Kades'):
+                            ?>
                             <option value="Admin">Admin</option>
                             <option value="Kades">Kades</option>
-                            <option value="Warga">Warga</option>
+                            <?php endif; ?>
+
                         </select>
                     </div>
                 </div>
@@ -177,9 +187,18 @@
                         <label for="role">Role</label>
                         <select name="role" id="role" class="form-control" required>
                             <option value="">Pilih Role</option>
+                            <?php 
+                            if(session()->get('role') == 'Admin'):
+                            ?>
+                            <option value="Warga" <?= ($value['role'] == 'Warga') ? 'selected' : ''; ?>>Warga</option>
+                            <?php 
+                            endif;
+                            if(session()->get('role') == 'Kades'):
+                            ?>
                             <option value="Admin" <?= ($value['role'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
                             <option value="Kades" <?= ($value['role'] == 'Kades') ? 'selected' : ''; ?>>Kades</option>
-                            <option value="Warga" <?= ($value['role'] == 'Warga') ? 'selected' : ''; ?>>Warga</option>
+                            <?php endif;
+                            ?>
                         </select>
                     </div>
                 </div>

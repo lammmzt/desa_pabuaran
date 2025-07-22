@@ -9,10 +9,16 @@ class Users extends BaseController
     public function index()
     {
         $usersModel = new usersModel();
+        $role = session()->get('role'); 
+        if($role == 'Kades'){
+            $data_user = $usersModel->where('role !=', 'Warga')->findAll();
+        }else{
+            $data_user = $usersModel->where('role', 'Kades')->findAll();
+        }
         $data = [
             'title' => 'Users',
             'menu_active' => 'Users',
-            'users' => $usersModel->findAll(),
+            'users' => $data_user,
             'validation' => \Config\Services::validation()
         ];
         return view('Admin/Users/index', $data);

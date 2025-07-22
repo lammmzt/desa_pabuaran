@@ -8,6 +8,7 @@ use App\Models\dataDesaModel;
 use App\Models\pengajuanModel;
 use App\Models\jenisSuratModel;
 use App\Models\detailJenisSuratModel;
+use App\Models\suratModel;
 use Ramsey\Uuid\Uuid;
 
 class LandingPage extends BaseController
@@ -77,11 +78,15 @@ class LandingPage extends BaseController
         $kartuKeluargaModel = new kartuKeluargaModel();
         $wargaModel = new wargaModel();
         $jenisSuratModel = new jenisSuratModel();
+        $suratModel = new suratModel();
         $datas_desa = $desaModel->first();
         $id_user = session()->get('id_user');
         $data_keluarga = $kartuKeluargaModel->getKeluargaByIduser($id_user);
         $data_pengajuan = $pengajuanModel->getAjuanByIdUser($id_user);
         $data_warga = $wargaModel->getWargaByIdKartuKeluarga($data_keluarga['id_kartu_keluarga']);
+        $data_surat = $suratModel->getSuratByIdKeluarga($data_keluarga['id_kartu_keluarga']);
+        // dd($data_surat);
+        $array_surat = array_column($data_surat, 'id_pengajuan');
         // dd($data_pengajuan);
         $data = [ // Data yang akan dikirim ke view
             'title' => 'Ajuan Surat | ' . $datas_desa['nama_desa'], // Judul halaman
@@ -89,10 +94,45 @@ class LandingPage extends BaseController
             'data_pengajuan' => $data_pengajuan,
             'data_warga' => $data_warga,
             'data_keluarga' => $data_keluarga,
+            'data_surat' => $array_surat,
             'data_jenis_surat' => $jenisSuratModel->where('status_jenis_surat', '1')->findAll(),
             'menu_active' => 'Ajuan', // Menu yang aktif
             'validation' => \Config\Services::validation()  // Validasi untuk form
         ];
         return view('LandingPage/Ajuan', $data); // Mengembalikan view dengan data yang telah disiapkan
+    }
+
+    public function Profile(){
+        $userModel = new usersModel();
+        $data_user = $userModel->find(session()->get('id_user'));
+        $data = [
+            'title' => 'Profile',
+            'menu_active' => 'Profile',
+            'user' => $data_user,
+            'validation' => \Config\Services::validation()
+        ];
+        return view('LandingPage/Profile', $data);
+    }
+
+    public function updateUser()
+    {
+        $model = new usersModel();
+        $id = $this->request->getPost('id_user');
+        $data = [
+            'nama_user' => $this->request->getPost('nama_user'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]; 
+        // jika password diisi, maka update password
+        if ($this->request->getPost('password') != '' && $this->request->getPost('konfirmasi_password') != '') {
+            if ($this->request->getPost('password') == $this->request->getPost('konfirmasi_password')) {
+                $data['password'] = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+            }else{
+                session()->setFlashdata('error', 'Password tidak sama');
+                return redirect()->back();
+            }
+        }
+        $model->update($id, $data);
+        session()->setFlashdata('success', 'Data User berhasil diubah');
+        return redirect()->back();
     }
 }

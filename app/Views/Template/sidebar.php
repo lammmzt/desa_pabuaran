@@ -15,12 +15,15 @@
     <li class="nav-item <?= ($menu_active == 'dashboard') ? 'active' : ''; ?>">
         <a class="nav-link" href="<?= base_url('Home'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+    <?php 
+        if(session()->get('role') == 'Admin'):
+    ?>
     <!-- Heading -->
     <div class="sidebar-heading">
         Master Data
@@ -52,21 +55,23 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Admin
+        <?php echo session()->get('role'); ?>
     </div>
-
-    <li class="nav-item <?= ($menu_active == 'Pengajuan') ? 'active' : ''; ?>">
+    <?php 
+    endif;
+    ?>
+    <li class="nav-item <?= ($menu_active == 'Ajuan_surat') ? 'active' : ''; ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-envelope"></i>
             <span>Surat</span>
         </a>
-        <div id="collapsePages" class="collapse <?= ($menu_active == 'Pengajuan') ? 'show' : ''; ?>"
+        <div id="collapsePages" class="collapse <?= ($menu_active == 'Ajuan_surat') ? 'show' : ''; ?>"
             aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Surat</h6>
-                <a class="collapse-item <?= ($menu_active == 'Pengajuan') ? 'active' : ''; ?>"
-                    href="<?= base_url('Pengajuan'); ?>">Pengajuan</a>
+                <a class="collapse-item <?= ($menu_active == 'Ajuan_surat') ? 'active' : ''; ?>"
+                    href="<?= base_url('Ajuan_surat'); ?>">Ajuan surat</a>
             </div>
         </div>
     </li>

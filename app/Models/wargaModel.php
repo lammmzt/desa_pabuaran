@@ -7,7 +7,7 @@ class wargaModel extends Model
 {
     protected $table = 'warga';
     protected $primaryKey = 'id_warga';
-    protected $allowedFields = ['id_warga', 'id_kartu_keluarga', 'nama_warga', 'tempat_lahir_warga', 'tanggal_lahir_warga', 'agama_warga', 'pekerjaan_warga','status_kawin_warga', 'shdk_warga', 'kebangsaan_warga', 'pendidikan_warga', 'berkas_ktp_warga', 'status_warga', 'created_at', 'updated_at'];
+    protected $allowedFields = ['id_warga', 'id_kartu_keluarga', 'nama_warga', 'jenis_kelamin_warga','tempat_lahir_warga', 'tanggal_lahir_warga', 'agama_warga', 'pekerjaan_warga','status_kawin_warga', 'shdk_warga', 'kebangsaan_warga', 'pendidikan_warga', 'berkas_ktp_warga', 'status_warga', 'created_at', 'updated_at'];
 
     public function getWarga($id = false)
     {

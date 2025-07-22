@@ -80,7 +80,7 @@ $data_desa = $desaModel->first();
                     <li class="dropdown"><a href="#"><span>Akun</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="<?= base_url('Profile'); ?>">Profile</a></li>
                             <li><a href="<?= base_url('Auth/logout'); ?>">Keluar</a></li>
                         </ul>
                     </li>

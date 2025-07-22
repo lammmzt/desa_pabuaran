@@ -26,6 +26,7 @@
     <script src="<?= base_url('Assets/'); ?>ckfinder/ckfinder.js"></script>
 
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Custom styles for this page -->
     <link href="<?= base_url('Assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -136,8 +137,11 @@
     <!-- Page level plugins -->
     <script src="<?= base_url('Assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url('Assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    </script>
 
-    <!-- Page level custom scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
     $(document).ready(function() {
         $('.dataTable').DataTable();
