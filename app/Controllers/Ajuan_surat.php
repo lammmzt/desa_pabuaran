@@ -234,6 +234,53 @@ class Ajuan_surat extends BaseController
         return redirect()->back();
     }
 
+
+     public function updateUser(){
+        $model = new pengajuanModel();
+        $detailModel = new detailPengajuanModel();
+        $detailJenisSuratModel = new detailJenisSuratModel();
+        $id_pengajuan = $this->request->getVar('id_pengajuan');
+        $data_pengajuan = $model->getPengajuan($id_pengajuan);
+        $data = [
+            'id_warga' => $this->request->getVar('id_warga'),
+            'keperluan_pengajuan' => $this->request->getVar('keperluan_pengajuan'),
+            'status_pengajuan' =>   $this->request->getVar('status_pengajuan'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        if($data_pengajuan['status_pengajuan'] == '0' ){
+            $data['status_pengajuan'] = '1';
+        }
+        $model->update($id_pengajuan, $data);
+        // jika ada upload file jenis surat
+        $data_detail = $detailModel->getDetailPengajuanByIdPengajuan($id_pengajuan);
+        if($data_detail){
+            foreach ($data_detail as $detail) {
+                // upload file
+                $file_detail_penajuan = $this->request->getFile($detail['id_detail_pengajuan']);
+                // checle file apakah foto atau bukan
+                if ($file_detail_penajuan->isValid() && !$file_detail_penajuan->hasMoved()) {
+                    // hapus file lama
+                    $file_lama = $detail['file_detail_penajuan'];
+                    unlink('Assets/file_pengajuan/' . $file_lama);
+
+                    $newName = $file_detail_penajuan->getRandomName();
+                    $file_detail_penajuan->move('Assets/file_pengajuan', $newName);
+
+                    $detailData = [
+                        'file_detail_penajuan' => $newName,
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ];
+                    $detailModel->update($detail['id_detail_pengajuan'], $detailData);
+                }
+            }
+        }
+        
+        // return $this->response->setJSON(['status' => '200', 'data' => 'Pengajuan berhasil disimpan', 'error' => false]);
+        session()->setFlashdata('success', 'Pengajuan berhasil diubah');
+        return redirect()->back();
+    }
+
+    
      public function proses($id_pengajuan){
         $wargaModel = new wargaModel();
         $jenisSuratModel = new jenisSuratModel();
