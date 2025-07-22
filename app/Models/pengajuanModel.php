@@ -41,6 +41,7 @@ class pengajuanModel extends Model
         ->join('kartu_keluarga', 'kartu_keluarga.id_kartu_keluarga = warga.id_kartu_keluarga')
         ->join('users', 'users.id_user = kartu_keluarga.id_user')
         ->where(['kartu_keluarga.id_user' => $idUser])
+        ->orderBy('pengajuan.created_at', 'DESC')
         ->findAll();
     }
 
