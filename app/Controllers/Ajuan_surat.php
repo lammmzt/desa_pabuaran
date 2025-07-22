@@ -29,9 +29,9 @@ class Ajuan_surat extends BaseController
         $data_surat = $suratModel->getSurat();
         $role = session()->get('role'); 
         if($role == 'Kades'){
-            $data_pengajuan = $pengajuanModel->getPengajuan()->where('status_pengajuan !=', '1')->Where('status_pengajuan !=', '0')->findAll();
+            $data_pengajuan = $pengajuanModel->getPengajuan()->where('status_pengajuan !=', '1')->Where('status_pengajuan !=', '0')->orderBy('created_at', 'DESC')->findAll();
         }else{
-            $data_pengajuan = $pengajuanModel->getPengajuan()->findAll();
+            $data_pengajuan = $pengajuanModel->getPengajuan()->orderBy('created_at', 'DESC')->findAll();
         }
         $array_surat = array_column($data_surat, 'id_pengajuan');
         // dd($data_surat);
