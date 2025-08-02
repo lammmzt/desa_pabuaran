@@ -61,10 +61,9 @@
                                 <td class="text-center" style="width: 10%;">
                                     <?php if ($value['status_kartu_keluarga'] == '1') { ?>
                                     <span class="badge badge-success">Aktif</span>
-                                    <?php } else if ($value['status_kartu_keluarga'] == '2') { ?>
-                                    <span class="badge badge-danger">Tidak Valid</span>
+
                                     <?php } else { ?>
-                                    <span class="badge badge-warning">Tidak Aktif</span>
+                                    <span class="badge badge-danger">Tidak Aktif</span>
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">
@@ -244,7 +243,7 @@
                                         <?= ($value['status_kartu_keluarga'] == '2') ? 'selected' : ''; ?>>
                                         Tidak
                                         Valid</option> -->
-                                    <option value="3"
+                                    <option value="0"
                                         <?= ($value['status_kartu_keluarga'] == '0') ? 'selected' : ''; ?>>
                                         Tidak
                                         Aktif</option>
@@ -297,10 +296,8 @@
                         <p><strong>Status Kartu Keluarga:</strong>
                             <?php if ($value['status_kartu_keluarga'] == '1') { ?>
                             <span class="badge badge-success">Aktif</span>
-                            <?php } else if ($value['status_kartu_keluarga'] == '2') { ?>
-                            <span class="badge badge-danger">Tidak Valid</span>
                             <?php } else { ?>
-                            <span class="badge badge-warning">Tidak Aktif</span>
+                            <span class="badge badge-danger">Tidak Aktif</span>
                             <?php } ?>
                         </p>
                     </div>

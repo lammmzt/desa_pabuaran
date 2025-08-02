@@ -11,9 +11,14 @@
                         <h6 class="m-0 font-weight-bold text-primary">Data Ajuan Surat</h6>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-primary btn-sm float-right"
-                            href="<?= base_url('Ajuan_surat/Tambah'); ?>">Tambah
+                        <?php 
+                       if(session()->get('role') == 'admin'){
+                       ?>
+                        <a class="btn btn-primary btn-sm float-right" href="#" data-toggle="modal"
+                            data-target="#add">Tambah
                             Data</a>
+                        <?php }
+                       ?>
                     </div>
                 </div>
             </div>

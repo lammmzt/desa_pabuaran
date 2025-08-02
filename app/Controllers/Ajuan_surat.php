@@ -75,8 +75,9 @@ class Ajuan_surat extends BaseController
 
         $model->insert($data);
         // chek detail jeni surat
-        $detail_jenis_surat = $detailJenisSuratModel->where('id_jenis_surat', $this->request->getVar('id_jenis_surat'))->find();
-        if($detail_jenis_surat){
+        $detail_jenis_surat = $detailJenisSuratModel->where('id_jenis_surat', $this->request->getVar('id_jenis_surat'))->first();
+        // dd($detail_jenis_surat);
+        if($detail_jenis_surat != null){
             foreach ($detail_jenis_surat as $detail) {
                 // upload file
                 $file_detail_penajuan = $this->request->getFile($detail['id_persyaratan']);
@@ -95,8 +96,6 @@ class Ajuan_surat extends BaseController
                     return $this->response->setJSON(['status' => '400', 'message' => 'Pengajuan gagal disimpan', 'error' => true]);
                 }
             }
-        }else{
-            return $this->response->setJSON(['status' => '400', 'message' => 'Pengajuan gagal disimpan', 'error' => true]);
         }
         // return $this->response->setJSON(['status' => '200', 'data' => 'Pengajuan berhasil disimpan', 'error' => false]);
         session()->setFlashdata('success', 'Pengajuan berhasil disimpan');
@@ -119,7 +118,7 @@ class Ajuan_surat extends BaseController
 
         $model->insert($data);
         // chek detail jeni surat
-        $detail_jenis_surat = $detailJenisSuratModel->where('id_jenis_surat', $this->request->getVar('id_jenis_surat'))->find();
+        $detail_jenis_surat = $detailJenisSuratModel->where('id_jenis_surat', $this->request->getVar('id_jenis_surat'))->first();
         if($detail_jenis_surat){
             foreach ($detail_jenis_surat as $detail) {
                 // upload file
@@ -140,9 +139,6 @@ class Ajuan_surat extends BaseController
                     return redirect()->to(base_url('Ajuan_Surat/Tambah'))->withInput();
                 }
             }
-        }else{
-            session()->setFlashdata('error', 'Pengajuan gagal disimpan');
-            return redirect()->to(base_url('Ajuan_Surat/Tambah'))->withInput();
         }
         // return $this->response->setJSON(['status' => '200', 'data' => 'Pengajuan berhasil disimpan', 'error' => false]);
         session()->setFlashdata('success', 'Pengajuan berhasil disimpan');
@@ -327,7 +323,7 @@ class Ajuan_surat extends BaseController
             $id_surat = 'SR-' . date('Y') . '-' . $no_surat;
             $template_surat = $data_jenis_surat['template_jenis_surat'];
             $isi_surat['nomor_surat'] = $data_jenis_surat['kode_jenis_surat'] . '/' . $no_surat ;
-            $isi_surat['tanggal_surat'] = date('d') . ' ' . $bulan_indo[date('n') - 1] . ' ' . date('Y');
+            $isi_surat['tanggal_surat'] = date('Y-m-d');
             $isi_surat['ttd_kepala_desa'] = '<img src="' . base_url('Assets/ttd_surat/'. $id_surat . '.png') . '" width="120px">';
             $isi_surat['nama_kepala_desa'] = $data_desa['nama_kepala_desa'];
             $isi_surat['nip_kepala_desa'] = $data_desa['nip_kepala_desa'];

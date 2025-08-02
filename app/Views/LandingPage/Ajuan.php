@@ -22,6 +22,9 @@ $detailPengajuanModel = new detailPengajuanModel();
     </div>
 </div><!-- End Page Title -->
 <section id="contact" class="contact section">
+    <?php 
+if($data_keluarga['status_kartu_keluarga'] != '0'):
+?>
 
     <div class="container">
         <div class="row mb-2">
@@ -113,6 +116,18 @@ $detailPengajuanModel = new detailPengajuanModel();
         </div>
     </div>
 </section><!-- /Contact Section -->
+<?php 
+else:
+?>
+<div class="row mx-2">
+    <div class="col-12">
+        <div style="text-align: center; background-color: red; color: white; padding: 10px; border-radius: 5px;">
+            <strong>Maaf!</strong> Data Keluarga Tidak Aktif Silahkan Hubungi Admin Desa.
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
 <!-- Modal add -->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-lg modal-dialog">

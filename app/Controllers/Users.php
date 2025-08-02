@@ -13,7 +13,7 @@ class Users extends BaseController
         if($role == 'Kades'){
             $data_user = $usersModel->where('role !=', 'Warga')->findAll();
         }else{
-            $data_user = $usersModel->where('role', 'Kades')->findAll();
+            $data_user = $usersModel->where('role', 'Warga')->findAll();
         }
         $data = [
             'title' => 'Users',
@@ -70,6 +70,18 @@ class Users extends BaseController
     public function update($id)
     {
         $model = new usersModel();
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'username' => 'required|is_unique[users.username,id_user,' . $id . ']',
+            'nama_user' => 'required',
+            'alamat_user' => 'required',
+            'role' => 'required'
+        ]);
+        if (!$validation->run($this->request->getPost())) {
+            // session()->setFlashdata('errors', $validation->getErrors()); 
+            session()->setFlashdata('error', 'Data User gagal diubah');
+            return redirect()->to('/users');
+        }
         $data = [
             'username' => $this->request->getPost('username'),
             'nama_user' => $this->request->getPost('nama_user'),

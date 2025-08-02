@@ -153,11 +153,9 @@
                             </td>
                             <td class="text-center" style="width: 10%;">
                                 <?php if ($value['status_warga'] == '1') { ?>
-                                Aktif
-                                <?php } else if ($value['status_warga'] == '2') { ?>
-                                Tidak Valid
+                                Hidup
                                 <?php } else { ?>
-                                Tidak Aktif
+                                Meninggal
                                 <?php } ?>
                             </td>
                             <td class="text-center">
@@ -209,113 +207,112 @@
                                     required>
                                     <option value="">Pilih Jenis Kelamin</option>
                                     <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan>Perempuan</option>
+                                    <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="tempat_lahir_warga">Tempat Lahir</label>
+                                <input type="text" name="tempat_lahir_warga" id="tempat_lahir_warga"
+                                    class="form-control mt-1" required placeholder="Masukkan Tempat Lahir">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="tanggal_lahir_warga">Tanggal Lahir</label>
+                                <input type="date" name="tanggal_lahir_warga" id="tanggal_lahir_warga"
+                                    class="form-control mt-1" required min="1900-01-01" max="<?= date('Y-m-d'); ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="agama_warga">Agama</label>
+                                <select name="agama_warga" id="agama_warga" class="form-control mt-1" required>
+                                    <option value="">Pilih Agama</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Kristen">Kristen</option>
+                                    <option value="Katolik">Katolik</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Buddha">Buddha</option>
+                                    <option value="Konghucu">Konghucu</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="pekerjaan_warga">Pekerjaan</label>
+                                <input type="text" name="pekerjaan_warga" id="pekerjaan_warga" class="form-control mt-1"
+                                    required placeholder="Masukkan Pekerjaan">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="status_kawin_warga">Status Kawin</label>
+                                <select name="status_kawin_warga" id="status_kawin_warga" class="form-control mt-1"
+                                    required>
+                                    <option value="">Pilih Status Kawin</option>
+                                    <option value="Kawin">Kawin</option>
+                                    <option value="Belum Kawin">Belum Kawin</option>
+                                    <option value="Cerai Hidup">Cerai Hidup</option>
+                                    <option value="Cerai Mati">Cerai Mati</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="shdk_warga">SHDK</label>
+                                <select name="shdk_warga" id="shdk_warga" class="form-control mt-1" required>
+                                    <option value="">Pilih SHDK</option>
+                                    <option value="Kepala Keluarga">Kepala Keluarga</option>
+                                    <option value="Istri">Istri</option>
+                                    <option value="Anak">Anak</option>
+                                    <option value="Orang Tua">Orang Tua</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="kebangsaan_warga">Kebangsaan</label>
+                                <input type="text" name="kebangsaan_warga" id="kebangsaan_warga"
+                                    class="form-control mt-1" required placeholder="Masukkan Kebangsaan">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="pendidikan_warga">Pendidikan</label>
+                                <select name="pendidikan_warga" id="pendidikan_warga" class="form-control mt-1"
+                                    required>
+                                    <option value="">Pilih Pendidikan</option>
+                                    <option value="TIDAK / BELUM SEKOLAH">TIDAK / BELUM SEKOLAH</option>
+                                    <option value="TAMAT SD / SEDERAJAT">TAMAT SD / SEDERAJAT</option>
+                                    <option value="SLTA / SEDERAJAT">SLTA / SEDERAJAT</option>
+                                    <option value="SLTP/SEDERAJAT">SLTP/SEDERAJAT</option>
+                                    <option value="BELUM TAMAT SD/SEDERAJAT">BELUM TAMAT SD/SEDERAJAT</option>
+                                    <option value="DIPLOMA IV/ STRATA I">DIPLOMA IV/ STRATA I</option>
+                                    <option value="DIPLOMA I / II">DIPLOMA I / II</option>
+                                    <option value="AKADEMI/ DIPLOMA III/S. MUDA">AKADEMI/ DIPLOMA III/S. MUDA
+                                    </option>
+                                    <option value="STRATA II">STRATA II</option>
+                                    <option value="STRATA III">STRATA III</option>
 
-                        <div class=" col-md-6">
-                                        <div class="form-group mb-2">
-                                            <label for="tempat_lahir_warga">Tempat Lahir</label>
-                                            <input type="text" name="tempat_lahir_warga" id="tempat_lahir_warga"
-                                                class="form-control mt-1" required placeholder="Masukkan Tempat Lahir">
-                                        </div>
+                                </select>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="tanggal_lahir_warga">Tanggal Lahir</label>
-                                    <input type="date" name="tanggal_lahir_warga" id="tanggal_lahir_warga"
-                                        class="form-control mt-1" required min="1900-01-01" max="<?= date('Y-m-d'); ?>">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="agama_warga">Agama</label>
-                                    <select name="agama_warga" id="agama_warga" class="form-control mt-1" required>
-                                        <option value="">Pilih Agama</option>
-                                        <option value="Islam">Islam</option>
-                                        <option value="Kristen">Kristen</option>
-                                        <option value="Katolik">Katolik</option>
-                                        <option value="Hindu">Hindu</option>
-                                        <option value="Buddha">Buddha</option>
-                                        <option value="Konghucu">Konghucu</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="pekerjaan_warga">Pekerjaan</label>
-                                    <input type="text" name="pekerjaan_warga" id="pekerjaan_warga"
-                                        class="form-control mt-1" required placeholder="Masukkan Pekerjaan">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="status_kawin_warga">Status Kawin</label>
-                                    <select name="status_kawin_warga" id="status_kawin_warga" class="form-control mt-1"
-                                        required>
-                                        <option value="">Pilih Status Kawin</option>
-                                        <option value="Kawin">Kawin</option>
-                                        <option value="Belum Kawin">Belum Kawin</option>
-                                        <option value="Cerai Hidup">Cerai Hidup</option>
-                                        <option value="Cerai Mati">Cerai Mati</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="shdk_warga">SHDK</label>
-                                    <select name="shdk_warga" id="shdk_warga" class="form-control mt-1" required>
-                                        <option value="">Pilih SHDK</option>
-                                        <option value="Kepala Keluarga">Kepala Keluarga</option>
-                                        <option value="Istri">Istri</option>
-                                        <option value="Anak">Anak</option>
-                                        <option value="Orang Tua">Orang Tua</option>
-                                        <option value="Lainnya">Lainnya</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="kebangsaan_warga">Kebangsaan</label>
-                                    <input type="text" name="kebangsaan_warga" id="kebangsaan_warga"
-                                        class="form-control mt-1" required placeholder="Masukkan Kebangsaan">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="pendidikan_warga">Pendidikan</label>
-                                    <select name="pendidikan_warga" id="pendidikan_warga" class="form-control mt-1"
-                                        required>
-                                        <option value="">Pilih Pendidikan</option>
-                                        <option value="TIDAK / BELUM SEKOLAH">TIDAK / BELUM SEKOLAH</option>
-                                        <option value="TAMAT SD / SEDERAJAT">TAMAT SD / SEDERAJAT</option>
-                                        <option value="SLTA / SEDERAJAT">SLTA / SEDERAJAT</option>
-                                        <option value="SLTP/SEDERAJAT">SLTP/SEDERAJAT</option>
-                                        <option value="BELUM TAMAT SD/SEDERAJAT">BELUM TAMAT SD/SEDERAJAT</option>
-                                        <option value="DIPLOMA IV/ STRATA I">DIPLOMA IV/ STRATA I</option>
-                                        <option value="DIPLOMA I / II">DIPLOMA I / II</option>
-                                        <option value="AKADEMI/ DIPLOMA III/S. MUDA">AKADEMI/ DIPLOMA III/S. MUDA
-                                        </option>
-                                        <option value="STRATA II">STRATA II</option>
-                                        <option value="STRATA III">STRATA III</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="berkas_ktp_warga">Berkas KTP</label>
-                                    <input type="file" name="berkas_ktp_warga" id="berkas_ktp_warga"
-                                        class="form-control mt-1" required accept=".jpg, .jpeg, .png">
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="berkas_ktp_warga">Berkas KTP</label>
+                                <input type="file" name="berkas_ktp_warga" id="berkas_ktp_warga"
+                                    class="form-control mt-1" required accept=".jpg, .jpeg, .png">
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary" id="btn_register">Simpan</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary" id="btn_register">Simpan</button>
+                </div>
             </form>
         </div>
     </div>
@@ -360,8 +357,10 @@
                                     <option value="">Pilih Jenis Kelamin</option>
                                     <option value="Laki-laki"
                                         <?= $value['jenis_kelamin_warga'] == 'Laki-laki' ? 'selected' : ''; ?>>
+                                        Laki-laki </option>
                                     <option value="Perempuan"
                                         <?= $value['jenis_kelamin_warga'] == 'Perempuan' ? 'selected' : ''; ?>>
+                                        Perempuan</option>
                                 </select>
                             </div>
                         </div>
@@ -518,11 +517,9 @@
                                 <select name="status_warga" id="status_warga" class="form-control mt-1" required>
                                     <option value="">Pilih Status Warga</option>
                                     <option value="1" <?= ($value['status_warga'] == '1') ? 'selected' : ''; ?>>
-                                        Aktif</option>
-                                    <option value="2" <?= ($value['status_warga'] == '2') ? 'selected' : ''; ?>>
-                                        Tidak Valid</option>
-                                    <option value="3" <?= ($value['status_warga'] == '3') ? 'selected' : ''; ?>>
-                                        Tidak Aktif</option>
+                                        Hidup</option>
+                                    <option value="0" <?= ($value['status_warga'] == '0') ? 'selected' : ''; ?>>
+                                        Meninggal</option>
                                 </select>
                             </div>
                         </div>
@@ -530,7 +527,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary" id="btn_register">Daftar</button>
+                    <button type="submit" class="btn btn-primary" id="btn_register">Ubah</button>
                 </div>
             </form>
         </div>

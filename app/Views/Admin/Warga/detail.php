@@ -95,11 +95,11 @@
                                 </td>
                                 <td class="text-center" style="width: 10%;">
                                     <?php if ($value['status_warga'] == '1') { ?>
-                                    <span class="badge badge-success">Aktif</span>
+                                    <span class="badge badge-success">Hidup</span>
                                     <?php } else if ($value['status_warga'] == '2') { ?>
                                     <span class="badge badge-danger">Tidak Valid</span>
                                     <?php } else { ?>
-                                    <span class="badge badge-warning">Tidak Aktif</span>
+                                    <span class="badge badge-warning">Meninggal</span>
                                     <?php } ?>
                                 </td>
                                 <td class="text-center">
@@ -168,7 +168,8 @@
                             <div class="form-group">
                                 <label for="tanggal_lahir_warga">Tanggal Lahir</label>
                                 <input type="date" name="tanggal_lahir_warga" id="tanggal_lahir_warga"
-                                    class="form-control" required min="1900-01-01" max="<?= date('Y-m-d'); ?>">
+                                    class="form-control" required min="1900-01-01" max="<?= date('Y-m-d'); ?>"
+                                    placeholder="dd mm yy" pattern="\d{2} \d{2} \d{2}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -461,11 +462,9 @@
                                 <select name="status_warga" id="status_warga" class="form-control" required>
                                     <option value="">Pilih Status Warga</option>
                                     <option value="1" <?= ($value['status_warga'] == '1') ? 'selected' : ''; ?>>
-                                        Aktif</option>
-                                    <option value="2" <?= ($value['status_warga'] == '2') ? 'selected' : ''; ?>>
-                                        Tidak Valid</option>
-                                    <option value="3" <?= ($value['status_warga'] == '3') ? 'selected' : ''; ?>>
-                                        Tidak Aktif</option>
+                                        Hidup</option>
+                                    <option value="0" <?= ($value['status_warga'] == '0') ? 'selected' : ''; ?>>
+                                        Meninggal</option>
                                 </select>
                             </div>
                         </div>

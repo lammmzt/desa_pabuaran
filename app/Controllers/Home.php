@@ -15,8 +15,8 @@ class Home extends BaseController
         $pengajuanModel = new pengajuanModel();
         $suratModel = new suratModel();
         $jumlah_pengguna = $userModel->countAllResults();
-        $jumlah_jenis_surat = $jenisSuratModel->countAllResults();
-        $jumlah_pengajuan = $pengajuanModel->countAllResults();
+        $jumlah_jenis_surat = $jenisSuratModel->where('status_jenis_surat', '1')->countAllResults();
+        $jumlah_pengajuan = $pengajuanModel->where('status_pengajuan', '3')->countAllResults();
         $jumlah_surat = $suratModel->countAllResults();
         if($this->request->getPost('tahun')){ // if year is selected
             $year = $this->request->getPost('tahun'); // get selected year

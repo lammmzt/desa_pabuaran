@@ -27,6 +27,11 @@ class Auth extends BaseController
         {
             if(password_verify($password, $users['password'])) // jika password sesuai
             {
+                // jika status user aktif
+                if($users['status_user'] == '0'){
+                    session()->setFlashdata('error', 'User Tidak Aktif, Hubungi Admin'); // menampilkan pesan error
+                    return redirect()->to(base_url('Auth'))->withInput(); // mengalihkan ke halaman Auth
+                }
                 session()->set([ // membuat session
                     'id_user' => $users['id_user'],
                     'nama_user' => $users['nama_user'],
@@ -55,6 +60,14 @@ class Auth extends BaseController
 
         if($user){
             if(password_verify($password, $user['password'])){
+                // jika status user aktif
+                if($user['status_user'] == '0'){
+                    return $this->response->setJSON([
+                        'error' => true,
+                        'status' => 401,
+                        'data' => 'User Tidak Aktif, Hubungi Admin',
+                    ]);
+                }
                 $ses_data = [
                     'id_user' => $user['id_user'],
                     'nama_user' => $user['nama_user'],

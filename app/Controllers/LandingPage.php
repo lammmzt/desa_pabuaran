@@ -17,12 +17,26 @@ class LandingPage extends BaseController
     {
         $model = new kartuKeluargaModel(); // Inisialisasi model Kartu Keluarga
         $desaModel = new dataDesaModel();
+        $userModel = new usersModel();
+        $jenisSuratModel = new jenisSuratModel();
+        $pengajuanModel = new pengajuanModel();
+        $suratModel = new suratModel();
+        $jumlah_pengguna = $userModel->where('role', 'Warga')->countAllResults();
+        $jumlah_jenis_surat = $jenisSuratModel->where('status_jenis_surat', '1')->countAllResults();
+        $jumlah_pengajuan = $pengajuanModel->where('status_pengajuan', '3')->countAllResults();
+        $jumlah_surat = $suratModel->countAllResults();
+        $jumlah_pegawai = $userModel->where('role', 'Admin')->orWhere('role', 'Kades')->countAllResults();
         $datas_desa = $desaModel->first();
         $data = [ // Data yang akan dikirim ke view
             'title' => 'HOME | ' . $datas_desa['nama_desa'], // Judul halaman
             'datas_desa' => $datas_desa,
             'menu_active' => 'Home', // Menu yang aktif
             'keluarga' => $model->getkartuKeluarga(), // Mengambil semua data Warga dari model
+            'jumlah_pengguna' => $jumlah_pengguna,
+            'jumlah_jenis_surat' => $jumlah_jenis_surat,
+            'jumlah_pengajuan' => $jumlah_pengajuan,
+            'jumlah_surat' => $jumlah_surat,
+            'jumlah_pegawai' => $jumlah_pegawai,
             'validation' => \Config\Services::validation()  // Validasi untuk form
         ];
         return view('LandingPage/Home', $data); // Mengembalikan view dengan data yang telah disiapkan

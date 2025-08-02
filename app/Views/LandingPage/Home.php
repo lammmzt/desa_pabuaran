@@ -23,32 +23,36 @@
 
                     <div class="col-lg-3 col-6">
                         <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="0"
-                                class="purecounter">232</span>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $jumlah_pengguna; ?>"
+                                data-purecounter-duration="0" class="purecounter"><?= $jumlah_pengguna; ?>
+                            </span>
                             <p>Pengguna</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-6">
                         <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="0"
-                                class="purecounter">521</span>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $jumlah_pegawai; ?>"
+                                data-purecounter-duration="0" class="purecounter">
+                                <?= $jumlah_pegawai; ?></span>
                             <p>Pegawai</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-6">
                         <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="0"
-                                class="purecounter">1453</span>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $jumlah_jenis_surat; ?>"
+                                data-purecounter-duration="0" class="purecounter">
+                                <?= $jumlah_jenis_surat; ?></span>
                             <p>Layanan</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-6">
                         <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="0"
-                                class="purecounter">32</span>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $jumlah_pengajuan; ?>"
+                                data-purecounter-duration="0" class="purecounter">
+                                <?= $jumlah_pengajuan; ?></span>
                             <p>Terlayani</p>
                         </div>
                     </div><!-- End Stats Item -->
